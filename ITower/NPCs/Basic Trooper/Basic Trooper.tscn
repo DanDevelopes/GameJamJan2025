@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://NPCs/Basic Trooper/Animation/Basic Trooper.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://NPCs/Basic Trooper/Basic Trooper.cs" type="Script" id=2]
+
+[node name="Basic Trooper" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "New Anim"
