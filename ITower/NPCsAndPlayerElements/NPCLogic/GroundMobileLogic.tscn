@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="GroundMobileAI" type="Node2D"]
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ReadyToFireTimer" type="Timer" parent="."]
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
