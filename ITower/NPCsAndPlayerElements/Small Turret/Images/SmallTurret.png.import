@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SmallTurret.png-3fb396731e3b7da40b5245999c0a7fa4.stex"
+path="res://.import/SmallTurret.png-a720f8c2a7fd7d0a2909e7f2b4ade7ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NPCs/Small Turret/Images/SmallTurret.png"
-dest_files=[ "res://.import/SmallTurret.png-3fb396731e3b7da40b5245999c0a7fa4.stex" ]
+source_file="res://NPCsAndPlayerElements/Small Turret/Images/SmallTurret.png"
+dest_files=[ "res://.import/SmallTurret.png-a720f8c2a7fd7d0a2909e7f2b4ade7ef.stex" ]
 
 [params]
 
