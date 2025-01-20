@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Selecter0000.png-8c71e08c9ca026a66b0e237df061d239.stex"
+path="res://.import/SmallTurret.png-3fb396731e3b7da40b5245999c0a7fa4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main Menu/Images/Selecter0000.png"
-dest_files=[ "res://.import/Selecter0000.png-8c71e08c9ca026a66b0e237df061d239.stex" ]
+source_file="res://NPCs/Small Turret/Images/SmallTurret.png"
+dest_files=[ "res://.import/SmallTurret.png-3fb396731e3b7da40b5245999c0a7fa4.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

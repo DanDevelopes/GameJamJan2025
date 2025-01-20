@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,14 +9,28 @@ namespace ITower.NPCs
 {
     public static class StatModifiers
     {
-        public static enum upgrades
+        static StatModifiers()
         {
-
+            setUpgrades = new Dictionary<upgrades, int>();
         }
-        Dictionary
-        public static int sanityModifier() 
+        public enum upgrades
         {
-        
+            EmpathyInhibitor,
+            SkillRegulator,
+            Dopamineregulator,
+            ArmourImprovement,
+            AIEnegineering,
+            Cybernetics
+        }
+        private static Dictionary<upgrades, int> setUpgrades;
+        private static int totalUpgradePoints;
+        public static void UpgradeStat(upgrades upgrade, int amount) 
+        { 
+            setUpgrades[upgrade] = amount;
+        }
+        public static Dictionary<upgrades, int> GetStatModifiers()
+        {
+            return setUpgrades;
         }
     }
 }
