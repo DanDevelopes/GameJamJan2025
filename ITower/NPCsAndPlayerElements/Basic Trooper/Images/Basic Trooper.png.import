@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Selecter0000.png-8c71e08c9ca026a66b0e237df061d239.stex"
+path="res://.import/Basic Trooper.png-bc14e0525f707b147b33a0b4ae78e773.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main Menu/Images/Selecter0000.png"
-dest_files=[ "res://.import/Selecter0000.png-8c71e08c9ca026a66b0e237df061d239.stex" ]
+source_file="res://NPCsAndPlayerElements/Basic Trooper/Images/Basic Trooper.png"
+dest_files=[ "res://.import/Basic Trooper.png-bc14e0525f707b147b33a0b4ae78e773.stex" ]
 
 [params]
 
