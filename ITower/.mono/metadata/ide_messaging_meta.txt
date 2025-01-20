@@ -1,2 +1,2 @@
-﻿49869
-C:/Users/danie/AppData/Local/Godot_v3.6-stable_mono_win64/Godot_v3.6-stable_mono_win64.exe
+﻿51096
+C:/Users/danie/Downloads/Godot_v3.6-stable_mono_win64/Godot_v3.6-stable_mono_win64/Godot_v3.6-stable_mono_win64.exe
