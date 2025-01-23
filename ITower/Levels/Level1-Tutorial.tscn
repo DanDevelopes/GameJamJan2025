@@ -1,9 +1,237 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Level Assets/Images/GrasslandsBiome 1.0.png" type="Texture" id=1]
 [ext_resource path="res://PlayerScreenAndUI/PlayerUIController.tscn" type="PackedScene" id=2]
 [ext_resource path="res://NPCsAndPlayerElements/MainTower/MainTower.tscn" type="PackedScene" id=3]
-[ext_resource path="res://NPCsAndPlayerElements/Basic Trooper/Basic Trooper.tscn" type="PackedScene" id=4]
+[ext_resource path="res://NPCsAndPlayerElements/BasicTrooper/BasicTrooper.tscn" type="PackedScene" id=4]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 4, 4, 32, 4, 32, 32, 4, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 4, 4, 32, 4, 32, 32, 4, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=64]
+points = PoolVector2Array( 32, 4, 4, 4, 4, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( 0, 4, 32, 4, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 4, 32, 4, 32, 32, 0, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=65]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 4, 0, 4 )
+
+[sub_resource type="NavigationPolygon" id=55]
+vertices = PoolVector2Array( 32, 28, 0, 28, 0, 0, 32, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 32, 28, 0, 28, 0, 0, 32, 0 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 29, 32, 29 )
+
+[sub_resource type="NavigationPolygon" id=56]
+vertices = PoolVector2Array( 32, 32, 4, 32, 4, 28, 32, 0, 0, 0, 0, 28 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ) ]
+outlines = [ PoolVector2Array( 4, 32, 4, 28, 0, 28, 0, 0, 32, 0, 32, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( 3, 32, 0, 32, 0, 29, 3, 29 )
+
+[sub_resource type="NavigationPolygon" id=57]
+vertices = PoolVector2Array( 32, 32, 4, 32, 4, 0, 32, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 32, 32, 4, 32, 4, 0, 32, 0 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 0, 0, 3, 0, 3, 32, 0, 32 )
+
+[sub_resource type="NavigationPolygon" id=58]
+vertices = PoolVector2Array( 4, 0, 32, 0, 32, 32, 4, 4, 0, 32, 0, 4 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 3 ), PoolIntArray( 0, 3, 0 ) ]
+outlines = [ PoolVector2Array( 4, 0, 4, 0, 4, 4, 0, 4, 0, 32, 32, 32, 32, 0 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 0, 0, 3, 0, 3, 3, 0, 3 )
+
+[sub_resource type="NavigationPolygon" id=14]
+vertices = PoolVector2Array( 0, 4, 32, 4, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 4, 32, 4, 32, 32, 0, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=62]
+points = PoolVector2Array( 32, 3, 0, 3, 0, 0, 32, 0 )
+
+[sub_resource type="NavigationPolygon" id=59]
+vertices = PoolVector2Array( 0, 0, 28, 0, 28, 4, 0, 32, 32, 32, 32, 4 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ) ]
+outlines = [ PoolVector2Array( 28, 0, 28, 4, 32, 4, 32, 32, 0, 32, 0, 0 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 29, 0, 32, 0, 32, 3, 29, 3 )
+
+[sub_resource type="NavigationPolygon" id=18]
+vertices = PoolVector2Array( 0, 0, 28, 0, 28, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 28, 0, 28, 32, 0, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=63]
+points = PoolVector2Array( 32, 32, 29, 32, 29, 0, 32, 0 )
+
+[sub_resource type="NavigationPolygon" id=20]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=21]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=22]
+vertices = PoolVector2Array( 0, 4, 28, 4, 28, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 4, 28, 4, 28, 32, 0, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=66]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 28, 32, 28, 4, 0, 4, 0, 4 )
+
+[sub_resource type="NavigationPolygon" id=24]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=25]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=26]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=27]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=28]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=29]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=30]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=31]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=32]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=33]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=34]
+vertices = PoolVector2Array( 0, 0, 28, 0, 28, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 28, 0, 28, 32, 0, 32 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=67]
+points = PoolVector2Array( 32, 32, 28, 32, 28, 0, 32, 0 )
+
+[sub_resource type="NavigationPolygon" id=36]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=37]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=38]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=39]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=40]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=41]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=42]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=43]
+vertices = PoolVector2Array( 0, 0, 28, 0, 28, 28, 0, 28 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 28, 0, 28, 28, 0, 28 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=68]
+points = PoolVector2Array( 0, 28, 28, 28, 28, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="NavigationPolygon" id=45]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 28, 0, 28 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 28, 0, 28 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=69]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 28, 32, 28 )
+
+[sub_resource type="NavigationPolygon" id=47]
+vertices = PoolVector2Array( 4, 0, 32, 0, 32, 28, 4, 28 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 4, 0, 32, 0, 32, 28, 4, 28 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=70]
+points = PoolVector2Array( 4, 0, 4, 28, 32, 28, 32, 32, 0, 32, 0, 0 )
+
+[sub_resource type="NavigationPolygon" id=54]
+vertices = PoolVector2Array( 32, 32, 4, 32, 4, 0, 32, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 32, 32, 4, 32, 4, 0, 32, 0 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=71]
+points = PoolVector2Array( 0, 0, 4, 0, 4, 32, 0, 32 )
+
+[sub_resource type="NavigationPolygon" id=51]
+vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=60]
+vertices = PoolVector2Array( 32, 0, 32, 28, 28, 28, 0, 0, 0, 32, 28, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ) ]
+outlines = [ PoolVector2Array( 32, 28, 28, 28, 28, 32, 0, 32, 0, 0, 32, 0 ) ]
+
+[sub_resource type="ConvexPolygonShape2D" id=53]
+points = PoolVector2Array( 32, 32, 29, 32, 29, 29, 32, 29 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrasslandsBiome 1.0.png 0"
@@ -13,12 +241,12 @@
 0/region = Rect2( 0, 0, 32, 32 )
 0/tile_mode = 1
 0/autotile/bitmask_mode = 0
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 256 ]
+0/autotile/bitmask_flags = [  ]
 0/autotile/icon_coordinate = Vector2( 0, 0 )
 0/autotile/tile_size = Vector2( 32, 32 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
+0/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 2 ) ]
 0/autotile/priority_map = [  ]
 0/autotile/z_index_map = [  ]
 0/autotile/fallback_mode = 0
@@ -26,9 +254,16 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 64 )
 0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 64 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 0/z_index = 0
 1/name = "GrasslandsBiome 1.0.png 1"
 1/texture = ExtResource( 1 )
@@ -37,12 +272,12 @@
 1/region = Rect2( 32, 0, 32, 32 )
 1/tile_mode = 1
 1/autotile/bitmask_mode = 0
-1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 320 ]
+1/autotile/bitmask_flags = [  ]
 1/autotile/icon_coordinate = Vector2( 0, 0 )
 1/autotile/tile_size = Vector2( 32, 32 )
 1/autotile/spacing = 0
 1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [  ]
+1/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 4 ) ]
 1/autotile/priority_map = [  ]
 1/autotile/z_index_map = [  ]
 1/autotile/fallback_mode = 0
@@ -50,9 +285,16 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 65 )
 1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 65 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 1/z_index = 0
 2/name = "GrasslandsBiome 1.0.png 2"
 2/texture = ExtResource( 1 )
@@ -61,12 +303,12 @@
 2/region = Rect2( 64, 0, 32, 32 )
 2/tile_mode = 1
 2/autotile/bitmask_mode = 0
-2/autotile/bitmask_flags = [ Vector2( 0, 0 ), 64 ]
+2/autotile/bitmask_flags = [  ]
 2/autotile/icon_coordinate = Vector2( 0, 0 )
 2/autotile/tile_size = Vector2( 32, 32 )
 2/autotile/spacing = 0
 2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [  ]
+2/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 22 ) ]
 2/autotile/priority_map = [  ]
 2/autotile/z_index_map = [  ]
 2/autotile/fallback_mode = 0
@@ -74,9 +316,16 @@
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 66 )
 2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 66 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 2/z_index = 0
 3/name = "GrasslandsBiome 1.0.png 3"
 3/texture = ExtResource( 1 )
@@ -85,12 +334,12 @@
 3/region = Rect2( 64, 32, 32, 32 )
 3/tile_mode = 1
 3/autotile/bitmask_mode = 0
-3/autotile/bitmask_flags = [ Vector2( 0, 0 ), 65 ]
+3/autotile/bitmask_flags = [  ]
 3/autotile/icon_coordinate = Vector2( 0, 0 )
 3/autotile/tile_size = Vector2( 32, 32 )
 3/autotile/spacing = 0
 3/autotile/occluder_map = [  ]
-3/autotile/navpoly_map = [  ]
+3/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 34 ) ]
 3/autotile/priority_map = [  ]
 3/autotile/z_index_map = [  ]
 3/autotile/fallback_mode = 0
@@ -98,9 +347,16 @@
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 67 )
 3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 67 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 3/z_index = 0
 4/name = "GrasslandsBiome 1.0.png 4"
 4/texture = ExtResource( 1 )
@@ -109,12 +365,12 @@
 4/region = Rect2( 64, 64, 32, 32 )
 4/tile_mode = 1
 4/autotile/bitmask_mode = 0
-4/autotile/bitmask_flags = [ Vector2( 0, 0 ), 1 ]
+4/autotile/bitmask_flags = [  ]
 4/autotile/icon_coordinate = Vector2( 0, 0 )
 4/autotile/tile_size = Vector2( 32, 32 )
 4/autotile/spacing = 0
 4/autotile/occluder_map = [  ]
-4/autotile/navpoly_map = [  ]
+4/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 43 ) ]
 4/autotile/priority_map = [  ]
 4/autotile/z_index_map = [  ]
 4/autotile/fallback_mode = 0
@@ -122,9 +378,16 @@
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 68 )
 4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 68 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 4/z_index = 0
 5/name = "GrasslandsBiome 1.0.png 5"
 5/texture = ExtResource( 1 )
@@ -133,12 +396,12 @@
 5/region = Rect2( 32, 64, 32, 32 )
 5/tile_mode = 1
 5/autotile/bitmask_mode = 0
-5/autotile/bitmask_flags = [ Vector2( 0, 0 ), 5 ]
+5/autotile/bitmask_flags = [  ]
 5/autotile/icon_coordinate = Vector2( 0, 0 )
 5/autotile/tile_size = Vector2( 32, 32 )
 5/autotile/spacing = 0
 5/autotile/occluder_map = [  ]
-5/autotile/navpoly_map = [  ]
+5/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 45 ) ]
 5/autotile/priority_map = [  ]
 5/autotile/z_index_map = [  ]
 5/autotile/fallback_mode = 0
@@ -146,9 +409,16 @@
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 0 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape = SubResource( 69 )
 5/shape_one_way = false
-5/shape_one_way_margin = 0.0
-5/shapes = [  ]
+5/shape_one_way_margin = 1.0
+5/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 69 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 5/z_index = 0
 6/name = "GrasslandsBiome 1.0.png 6"
 6/texture = ExtResource( 1 )
@@ -157,12 +427,12 @@
 6/region = Rect2( 0, 64, 32, 32 )
 6/tile_mode = 1
 6/autotile/bitmask_mode = 0
-6/autotile/bitmask_flags = [ Vector2( 0, 0 ), 4 ]
+6/autotile/bitmask_flags = [  ]
 6/autotile/icon_coordinate = Vector2( 0, 0 )
 6/autotile/tile_size = Vector2( 32, 32 )
 6/autotile/spacing = 0
 6/autotile/occluder_map = [  ]
-6/autotile/navpoly_map = [  ]
+6/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 47 ) ]
 6/autotile/priority_map = [  ]
 6/autotile/z_index_map = [  ]
 6/autotile/fallback_mode = 0
@@ -170,9 +440,16 @@
 6/navigation_offset = Vector2( 0, 0 )
 6/shape_offset = Vector2( 0, 0 )
 6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape = SubResource( 70 )
 6/shape_one_way = false
-6/shape_one_way_margin = 0.0
-6/shapes = [  ]
+6/shape_one_way_margin = 1.0
+6/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 70 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 6/z_index = 0
 7/name = "GrasslandsBiome 1.0.png 7"
 7/texture = ExtResource( 1 )
@@ -181,12 +458,12 @@
 7/region = Rect2( 0, 32, 32, 32 )
 7/tile_mode = 1
 7/autotile/bitmask_mode = 0
-7/autotile/bitmask_flags = [ Vector2( 0, 0 ), 260 ]
+7/autotile/bitmask_flags = [  ]
 7/autotile/icon_coordinate = Vector2( 0, 0 )
 7/autotile/tile_size = Vector2( 32, 32 )
 7/autotile/spacing = 0
 7/autotile/occluder_map = [  ]
-7/autotile/navpoly_map = [  ]
+7/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 54 ) ]
 7/autotile/priority_map = [  ]
 7/autotile/z_index_map = [  ]
 7/autotile/fallback_mode = 0
@@ -194,9 +471,16 @@
 7/navigation_offset = Vector2( 0, 0 )
 7/shape_offset = Vector2( 0, 0 )
 7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape = SubResource( 71 )
 7/shape_one_way = false
-7/shape_one_way_margin = 0.0
-7/shapes = [  ]
+7/shape_one_way_margin = 1.0
+7/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 71 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 7/z_index = 0
 8/name = "GrasslandsBiome 1.0.png 8"
 8/texture = ExtResource( 1 )
@@ -205,12 +489,12 @@
 8/region = Rect2( 32, 32, 32, 32 )
 8/tile_mode = 1
 8/autotile/bitmask_mode = 0
-8/autotile/bitmask_flags = [ Vector2( 0, 0 ), 325 ]
+8/autotile/bitmask_flags = [  ]
 8/autotile/icon_coordinate = Vector2( 0, 0 )
 8/autotile/tile_size = Vector2( 32, 32 )
 8/autotile/spacing = 0
 8/autotile/occluder_map = [  ]
-8/autotile/navpoly_map = [  ]
+8/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 51 ) ]
 8/autotile/priority_map = [  ]
 8/autotile/z_index_map = [  ]
 8/autotile/fallback_mode = 0
@@ -229,12 +513,12 @@
 9/region = Rect2( 96, 0, 32, 32 )
 9/tile_mode = 1
 9/autotile/bitmask_mode = 0
-9/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69 ]
+9/autotile/bitmask_flags = [  ]
 9/autotile/icon_coordinate = Vector2( 0, 0 )
 9/autotile/tile_size = Vector2( 32, 32 )
 9/autotile/spacing = 0
 9/autotile/occluder_map = [  ]
-9/autotile/navpoly_map = [  ]
+9/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 60 ) ]
 9/autotile/priority_map = [  ]
 9/autotile/z_index_map = [  ]
 9/autotile/fallback_mode = 0
@@ -242,9 +526,16 @@
 9/navigation_offset = Vector2( 0, 0 )
 9/shape_offset = Vector2( 0, 0 )
 9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape = SubResource( 53 )
 9/shape_one_way = false
-9/shape_one_way_margin = 0.0
-9/shapes = [  ]
+9/shape_one_way_margin = 1.0
+9/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 53 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 9/z_index = 0
 10/name = "GrasslandsBiome 1.0.png 10"
 10/texture = ExtResource( 1 )
@@ -253,12 +544,12 @@
 10/region = Rect2( 128, 0, 32, 32 )
 10/tile_mode = 1
 10/autotile/bitmask_mode = 0
-10/autotile/bitmask_flags = [ Vector2( 0, 0 ), 5 ]
+10/autotile/bitmask_flags = [  ]
 10/autotile/icon_coordinate = Vector2( 0, 0 )
 10/autotile/tile_size = Vector2( 32, 32 )
 10/autotile/spacing = 0
 10/autotile/occluder_map = [  ]
-10/autotile/navpoly_map = [  ]
+10/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 55 ) ]
 10/autotile/priority_map = [  ]
 10/autotile/z_index_map = [  ]
 10/autotile/fallback_mode = 0
@@ -266,9 +557,16 @@
 10/navigation_offset = Vector2( 0, 0 )
 10/shape_offset = Vector2( 0, 0 )
 10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape = SubResource( 7 )
 10/shape_one_way = false
-10/shape_one_way_margin = 0.0
-10/shapes = [  ]
+10/shape_one_way_margin = 1.0
+10/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 10/z_index = 0
 11/name = "GrasslandsBiome 1.0.png 11"
 11/texture = ExtResource( 1 )
@@ -277,12 +575,12 @@
 11/region = Rect2( 160, 0, 32, 32 )
 11/tile_mode = 1
 11/autotile/bitmask_mode = 0
-11/autotile/bitmask_flags = [ Vector2( 0, 0 ), 261 ]
+11/autotile/bitmask_flags = [  ]
 11/autotile/icon_coordinate = Vector2( 0, 0 )
 11/autotile/tile_size = Vector2( 32, 32 )
 11/autotile/spacing = 0
 11/autotile/occluder_map = [  ]
-11/autotile/navpoly_map = [  ]
+11/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 56 ) ]
 11/autotile/priority_map = [  ]
 11/autotile/z_index_map = [  ]
 11/autotile/fallback_mode = 0
@@ -290,9 +588,16 @@
 11/navigation_offset = Vector2( 0, 0 )
 11/shape_offset = Vector2( 0, 0 )
 11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape = SubResource( 9 )
 11/shape_one_way = false
-11/shape_one_way_margin = 0.0
-11/shapes = [  ]
+11/shape_one_way_margin = 1.0
+11/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 9 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 11/z_index = 0
 12/name = "GrasslandsBiome 1.0.png 12"
 12/texture = ExtResource( 1 )
@@ -301,12 +606,12 @@
 12/region = Rect2( 160, 32, 32, 32 )
 12/tile_mode = 1
 12/autotile/bitmask_mode = 0
-12/autotile/bitmask_flags = [ Vector2( 0, 0 ), 260 ]
+12/autotile/bitmask_flags = [  ]
 12/autotile/icon_coordinate = Vector2( 0, 0 )
 12/autotile/tile_size = Vector2( 32, 32 )
 12/autotile/spacing = 0
 12/autotile/occluder_map = [  ]
-12/autotile/navpoly_map = [  ]
+12/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 57 ) ]
 12/autotile/priority_map = [  ]
 12/autotile/z_index_map = [  ]
 12/autotile/fallback_mode = 0
@@ -314,9 +619,16 @@
 12/navigation_offset = Vector2( 0, 0 )
 12/shape_offset = Vector2( 0, 0 )
 12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape = SubResource( 11 )
 12/shape_one_way = false
-12/shape_one_way_margin = 0.0
-12/shapes = [  ]
+12/shape_one_way_margin = 1.0
+12/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 12/z_index = 0
 13/name = "GrasslandsBiome 1.0.png 13"
 13/texture = ExtResource( 1 )
@@ -325,12 +637,12 @@
 13/region = Rect2( 160, 64, 32, 32 )
 13/tile_mode = 1
 13/autotile/bitmask_mode = 0
-13/autotile/bitmask_flags = [ Vector2( 0, 0 ), 324 ]
+13/autotile/bitmask_flags = [  ]
 13/autotile/icon_coordinate = Vector2( 0, 0 )
 13/autotile/tile_size = Vector2( 32, 32 )
 13/autotile/spacing = 0
 13/autotile/occluder_map = [  ]
-13/autotile/navpoly_map = [  ]
+13/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 58 ) ]
 13/autotile/priority_map = [  ]
 13/autotile/z_index_map = [  ]
 13/autotile/fallback_mode = 0
@@ -338,9 +650,16 @@
 13/navigation_offset = Vector2( 0, 0 )
 13/shape_offset = Vector2( 0, 0 )
 13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape = SubResource( 13 )
 13/shape_one_way = false
-13/shape_one_way_margin = 0.0
-13/shapes = [  ]
+13/shape_one_way_margin = 1.0
+13/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 13 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 13/z_index = 0
 14/name = "GrasslandsBiome 1.0.png 14"
 14/texture = ExtResource( 1 )
@@ -349,12 +668,12 @@
 14/region = Rect2( 128, 64, 32, 32 )
 14/tile_mode = 1
 14/autotile/bitmask_mode = 0
-14/autotile/bitmask_flags = [ Vector2( 0, 0 ), 320 ]
+14/autotile/bitmask_flags = [  ]
 14/autotile/icon_coordinate = Vector2( 0, 0 )
 14/autotile/tile_size = Vector2( 32, 32 )
 14/autotile/spacing = 0
 14/autotile/occluder_map = [  ]
-14/autotile/navpoly_map = [  ]
+14/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 14 ) ]
 14/autotile/priority_map = [  ]
 14/autotile/z_index_map = [  ]
 14/autotile/fallback_mode = 0
@@ -362,9 +681,16 @@
 14/navigation_offset = Vector2( 0, 0 )
 14/shape_offset = Vector2( 0, 0 )
 14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape = SubResource( 62 )
 14/shape_one_way = false
-14/shape_one_way_margin = 0.0
-14/shapes = [  ]
+14/shape_one_way_margin = 1.0
+14/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 62 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 14/z_index = 0
 15/name = "GrasslandsBiome 1.0.png 15"
 15/texture = ExtResource( 1 )
@@ -373,12 +699,12 @@
 15/region = Rect2( 96, 64, 32, 32 )
 15/tile_mode = 1
 15/autotile/bitmask_mode = 0
-15/autotile/bitmask_flags = [ Vector2( 0, 0 ), 321 ]
+15/autotile/bitmask_flags = [  ]
 15/autotile/icon_coordinate = Vector2( 0, 0 )
 15/autotile/tile_size = Vector2( 32, 32 )
 15/autotile/spacing = 0
 15/autotile/occluder_map = [  ]
-15/autotile/navpoly_map = [  ]
+15/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 59 ) ]
 15/autotile/priority_map = [  ]
 15/autotile/z_index_map = [  ]
 15/autotile/fallback_mode = 0
@@ -386,9 +712,16 @@
 15/navigation_offset = Vector2( 0, 0 )
 15/shape_offset = Vector2( 0, 0 )
 15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape = SubResource( 17 )
 15/shape_one_way = false
-15/shape_one_way_margin = 0.0
-15/shapes = [  ]
+15/shape_one_way_margin = 1.0
+15/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 17 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 15/z_index = 0
 16/name = "GrasslandsBiome 1.0.png 16"
 16/texture = ExtResource( 1 )
@@ -397,12 +730,12 @@
 16/region = Rect2( 96, 32, 32, 32 )
 16/tile_mode = 1
 16/autotile/bitmask_mode = 0
-16/autotile/bitmask_flags = [ Vector2( 0, 0 ), 65 ]
+16/autotile/bitmask_flags = [  ]
 16/autotile/icon_coordinate = Vector2( 0, 0 )
 16/autotile/tile_size = Vector2( 32, 32 )
 16/autotile/spacing = 0
 16/autotile/occluder_map = [  ]
-16/autotile/navpoly_map = [  ]
+16/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 18 ) ]
 16/autotile/priority_map = [  ]
 16/autotile/z_index_map = [  ]
 16/autotile/fallback_mode = 0
@@ -410,9 +743,16 @@
 16/navigation_offset = Vector2( 0, 0 )
 16/shape_offset = Vector2( 0, 0 )
 16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape = SubResource( 63 )
 16/shape_one_way = false
-16/shape_one_way_margin = 0.0
-16/shapes = [  ]
+16/shape_one_way_margin = 1.0
+16/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 63 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 16/z_index = 0
 17/name = "GrasslandsBiome 1.0.png 17"
 17/texture = ExtResource( 1 )
@@ -438,23 +778,518 @@
 17/shape_one_way_margin = 0.0
 17/shapes = [  ]
 17/z_index = 0
+18/name = "GrasslandsBiome 1.0.png 18"
+18/texture = ExtResource( 1 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 32, 64, 32, 32 )
+18/tile_mode = 1
+18/autotile/bitmask_mode = 0
+18/autotile/bitmask_flags = [  ]
+18/autotile/icon_coordinate = Vector2( 0, 0 )
+18/autotile/tile_size = Vector2( 32, 32 )
+18/autotile/spacing = 0
+18/autotile/occluder_map = [  ]
+18/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 20 ) ]
+18/autotile/priority_map = [  ]
+18/autotile/z_index_map = [  ]
+18/autotile/fallback_mode = 0
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0
+19/name = "GrasslandsBiome 1.0.png 19"
+19/texture = ExtResource( 1 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 192, 0, 32, 32 )
+19/tile_mode = 1
+19/autotile/bitmask_mode = 0
+19/autotile/bitmask_flags = [  ]
+19/autotile/icon_coordinate = Vector2( 0, 0 )
+19/autotile/tile_size = Vector2( 32, 32 )
+19/autotile/spacing = 0
+19/autotile/occluder_map = [  ]
+19/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 21 ) ]
+19/autotile/priority_map = [  ]
+19/autotile/z_index_map = [  ]
+19/autotile/fallback_mode = 0
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape_one_way = false
+19/shape_one_way_margin = 0.0
+19/shapes = [  ]
+19/z_index = 0
+20/name = "GrasslandsBiome 1.0.png 20"
+20/texture = ExtResource( 1 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 192, 32, 32, 32 )
+20/tile_mode = 1
+20/autotile/bitmask_mode = 0
+20/autotile/bitmask_flags = [  ]
+20/autotile/icon_coordinate = Vector2( 0, 0 )
+20/autotile/tile_size = Vector2( 32, 32 )
+20/autotile/spacing = 0
+20/autotile/occluder_map = [  ]
+20/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 24 ) ]
+20/autotile/priority_map = [  ]
+20/autotile/z_index_map = [  ]
+20/autotile/fallback_mode = 0
+20/occluder_offset = Vector2( 0, 0 )
+20/navigation_offset = Vector2( 0, 0 )
+20/shape_offset = Vector2( 0, 0 )
+20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+20/shape_one_way = false
+20/shape_one_way_margin = 0.0
+20/shapes = [  ]
+20/z_index = 0
+21/name = "GrasslandsBiome 1.0.png 21"
+21/texture = ExtResource( 1 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 192, 64, 32, 32 )
+21/tile_mode = 1
+21/autotile/bitmask_mode = 0
+21/autotile/bitmask_flags = [  ]
+21/autotile/icon_coordinate = Vector2( 0, 0 )
+21/autotile/tile_size = Vector2( 32, 32 )
+21/autotile/spacing = 0
+21/autotile/occluder_map = [  ]
+21/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 25 ) ]
+21/autotile/priority_map = [  ]
+21/autotile/z_index_map = [  ]
+21/autotile/fallback_mode = 0
+21/occluder_offset = Vector2( 0, 0 )
+21/navigation_offset = Vector2( 0, 0 )
+21/shape_offset = Vector2( 0, 0 )
+21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+21/shape_one_way = false
+21/shape_one_way_margin = 0.0
+21/shapes = [  ]
+21/z_index = 0
+22/name = "GrasslandsBiome 1.0.png 22"
+22/texture = ExtResource( 1 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 224, 0, 32, 32 )
+22/tile_mode = 1
+22/autotile/bitmask_mode = 0
+22/autotile/bitmask_flags = [  ]
+22/autotile/icon_coordinate = Vector2( 0, 0 )
+22/autotile/tile_size = Vector2( 32, 32 )
+22/autotile/spacing = 0
+22/autotile/occluder_map = [  ]
+22/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 26 ) ]
+22/autotile/priority_map = [  ]
+22/autotile/z_index_map = [  ]
+22/autotile/fallback_mode = 0
+22/occluder_offset = Vector2( 0, 0 )
+22/navigation_offset = Vector2( 0, 0 )
+22/shape_offset = Vector2( 0, 0 )
+22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+22/shape_one_way = false
+22/shape_one_way_margin = 0.0
+22/shapes = [  ]
+22/z_index = 0
+23/name = "GrasslandsBiome 1.0.png 23"
+23/texture = ExtResource( 1 )
+23/tex_offset = Vector2( 0, 0 )
+23/modulate = Color( 1, 1, 1, 1 )
+23/region = Rect2( 224, 32, 32, 32 )
+23/tile_mode = 1
+23/autotile/bitmask_mode = 0
+23/autotile/bitmask_flags = [  ]
+23/autotile/icon_coordinate = Vector2( 0, 0 )
+23/autotile/tile_size = Vector2( 32, 32 )
+23/autotile/spacing = 0
+23/autotile/occluder_map = [  ]
+23/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 27 ) ]
+23/autotile/priority_map = [  ]
+23/autotile/z_index_map = [  ]
+23/autotile/fallback_mode = 0
+23/occluder_offset = Vector2( 0, 0 )
+23/navigation_offset = Vector2( 0, 0 )
+23/shape_offset = Vector2( 0, 0 )
+23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+23/shape_one_way = false
+23/shape_one_way_margin = 0.0
+23/shapes = [  ]
+23/z_index = 0
+24/name = "GrasslandsBiome 1.0.png 24"
+24/texture = ExtResource( 1 )
+24/tex_offset = Vector2( 0, 0 )
+24/modulate = Color( 1, 1, 1, 1 )
+24/region = Rect2( 224, 64, 32, 32 )
+24/tile_mode = 1
+24/autotile/bitmask_mode = 0
+24/autotile/bitmask_flags = [  ]
+24/autotile/icon_coordinate = Vector2( 0, 0 )
+24/autotile/tile_size = Vector2( 32, 32 )
+24/autotile/spacing = 0
+24/autotile/occluder_map = [  ]
+24/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 28 ) ]
+24/autotile/priority_map = [  ]
+24/autotile/z_index_map = [  ]
+24/autotile/fallback_mode = 0
+24/occluder_offset = Vector2( 0, 0 )
+24/navigation_offset = Vector2( 0, 0 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+24/shape_one_way = false
+24/shape_one_way_margin = 0.0
+24/shapes = [  ]
+24/z_index = 0
+25/name = "GrasslandsBiome 1.0.png 25"
+25/texture = ExtResource( 1 )
+25/tex_offset = Vector2( 0, 0 )
+25/modulate = Color( 1, 1, 1, 1 )
+25/region = Rect2( 256, 0, 32, 32 )
+25/tile_mode = 1
+25/autotile/bitmask_mode = 0
+25/autotile/bitmask_flags = [  ]
+25/autotile/icon_coordinate = Vector2( 0, 0 )
+25/autotile/tile_size = Vector2( 32, 32 )
+25/autotile/spacing = 0
+25/autotile/occluder_map = [  ]
+25/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 29 ) ]
+25/autotile/priority_map = [  ]
+25/autotile/z_index_map = [  ]
+25/autotile/fallback_mode = 0
+25/occluder_offset = Vector2( 0, 0 )
+25/navigation_offset = Vector2( 0, 0 )
+25/shape_offset = Vector2( 0, 0 )
+25/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+25/shape_one_way = false
+25/shape_one_way_margin = 0.0
+25/shapes = [  ]
+25/z_index = 0
+26/name = "GrasslandsBiome 1.0.png 26"
+26/texture = ExtResource( 1 )
+26/tex_offset = Vector2( 0, 0 )
+26/modulate = Color( 1, 1, 1, 1 )
+26/region = Rect2( 288, 0, 32, 32 )
+26/tile_mode = 1
+26/autotile/bitmask_mode = 0
+26/autotile/bitmask_flags = [  ]
+26/autotile/icon_coordinate = Vector2( 0, 0 )
+26/autotile/tile_size = Vector2( 32, 32 )
+26/autotile/spacing = 0
+26/autotile/occluder_map = [  ]
+26/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 30 ) ]
+26/autotile/priority_map = [  ]
+26/autotile/z_index_map = [  ]
+26/autotile/fallback_mode = 0
+26/occluder_offset = Vector2( 0, 0 )
+26/navigation_offset = Vector2( 0, 0 )
+26/shape_offset = Vector2( 0, 0 )
+26/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+26/shape_one_way = false
+26/shape_one_way_margin = 0.0
+26/shapes = [  ]
+26/z_index = 0
+27/name = "GrasslandsBiome 1.0.png 27"
+27/texture = ExtResource( 1 )
+27/tex_offset = Vector2( 0, 0 )
+27/modulate = Color( 1, 1, 1, 1 )
+27/region = Rect2( 288, 32, 32, 32 )
+27/tile_mode = 1
+27/autotile/bitmask_mode = 0
+27/autotile/bitmask_flags = [  ]
+27/autotile/icon_coordinate = Vector2( 0, 0 )
+27/autotile/tile_size = Vector2( 32, 32 )
+27/autotile/spacing = 0
+27/autotile/occluder_map = [  ]
+27/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 31 ) ]
+27/autotile/priority_map = [  ]
+27/autotile/z_index_map = [  ]
+27/autotile/fallback_mode = 0
+27/occluder_offset = Vector2( 0, 0 )
+27/navigation_offset = Vector2( 0, 0 )
+27/shape_offset = Vector2( 0, 0 )
+27/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+27/shape_one_way = false
+27/shape_one_way_margin = 0.0
+27/shapes = [  ]
+27/z_index = 0
+28/name = "GrasslandsBiome 1.0.png 28"
+28/texture = ExtResource( 1 )
+28/tex_offset = Vector2( 0, 0 )
+28/modulate = Color( 1, 1, 1, 1 )
+28/region = Rect2( 288, 64, 32, 32 )
+28/tile_mode = 1
+28/autotile/bitmask_mode = 0
+28/autotile/bitmask_flags = [  ]
+28/autotile/icon_coordinate = Vector2( 0, 0 )
+28/autotile/tile_size = Vector2( 32, 32 )
+28/autotile/spacing = 0
+28/autotile/occluder_map = [  ]
+28/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 32 ) ]
+28/autotile/priority_map = [  ]
+28/autotile/z_index_map = [  ]
+28/autotile/fallback_mode = 0
+28/occluder_offset = Vector2( 0, 0 )
+28/navigation_offset = Vector2( 0, 0 )
+28/shape_offset = Vector2( 0, 0 )
+28/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+28/shape_one_way = false
+28/shape_one_way_margin = 0.0
+28/shapes = [  ]
+28/z_index = 0
+29/name = "GrasslandsBiome 1.0.png 29"
+29/texture = ExtResource( 1 )
+29/tex_offset = Vector2( 0, 0 )
+29/modulate = Color( 1, 1, 1, 1 )
+29/region = Rect2( 256, 64, 32, 32 )
+29/tile_mode = 1
+29/autotile/bitmask_mode = 0
+29/autotile/bitmask_flags = [  ]
+29/autotile/icon_coordinate = Vector2( 0, 0 )
+29/autotile/tile_size = Vector2( 32, 32 )
+29/autotile/spacing = 0
+29/autotile/occluder_map = [  ]
+29/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 33 ) ]
+29/autotile/priority_map = [  ]
+29/autotile/z_index_map = [  ]
+29/autotile/fallback_mode = 0
+29/occluder_offset = Vector2( 0, 0 )
+29/navigation_offset = Vector2( 0, 0 )
+29/shape_offset = Vector2( 0, 0 )
+29/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+29/shape_one_way = false
+29/shape_one_way_margin = 0.0
+29/shapes = [  ]
+29/z_index = 0
+30/name = "GrasslandsBiome 1.0.png 30"
+30/texture = ExtResource( 1 )
+30/tex_offset = Vector2( 0, 0 )
+30/modulate = Color( 1, 1, 1, 1 )
+30/region = Rect2( 160, 96, 32, 32 )
+30/tile_mode = 1
+30/autotile/bitmask_mode = 0
+30/autotile/bitmask_flags = [  ]
+30/autotile/icon_coordinate = Vector2( 0, 0 )
+30/autotile/tile_size = Vector2( 32, 32 )
+30/autotile/spacing = 0
+30/autotile/occluder_map = [  ]
+30/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 36 ) ]
+30/autotile/priority_map = [  ]
+30/autotile/z_index_map = [  ]
+30/autotile/fallback_mode = 0
+30/occluder_offset = Vector2( 0, 0 )
+30/navigation_offset = Vector2( 0, 0 )
+30/shape_offset = Vector2( 0, 0 )
+30/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+30/shape_one_way = false
+30/shape_one_way_margin = 0.0
+30/shapes = [  ]
+30/z_index = 0
+31/name = "GrasslandsBiome 1.0.png 31"
+31/texture = ExtResource( 1 )
+31/tex_offset = Vector2( 0, 0 )
+31/modulate = Color( 1, 1, 1, 1 )
+31/region = Rect2( 192, 96, 32, 32 )
+31/tile_mode = 1
+31/autotile/bitmask_mode = 0
+31/autotile/bitmask_flags = [  ]
+31/autotile/icon_coordinate = Vector2( 0, 0 )
+31/autotile/tile_size = Vector2( 32, 32 )
+31/autotile/spacing = 0
+31/autotile/occluder_map = [  ]
+31/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 37 ) ]
+31/autotile/priority_map = [  ]
+31/autotile/z_index_map = [  ]
+31/autotile/fallback_mode = 0
+31/occluder_offset = Vector2( 0, 0 )
+31/navigation_offset = Vector2( 0, 0 )
+31/shape_offset = Vector2( 0, 0 )
+31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+31/shape_one_way = false
+31/shape_one_way_margin = 0.0
+31/shapes = [  ]
+31/z_index = 0
+32/name = "GrasslandsBiome 1.0.png 32"
+32/texture = ExtResource( 1 )
+32/tex_offset = Vector2( 0, 0 )
+32/modulate = Color( 1, 1, 1, 1 )
+32/region = Rect2( 192, 128, 32, 32 )
+32/tile_mode = 1
+32/autotile/bitmask_mode = 0
+32/autotile/bitmask_flags = [  ]
+32/autotile/icon_coordinate = Vector2( 0, 0 )
+32/autotile/tile_size = Vector2( 32, 32 )
+32/autotile/spacing = 0
+32/autotile/occluder_map = [  ]
+32/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 38 ) ]
+32/autotile/priority_map = [  ]
+32/autotile/z_index_map = [  ]
+32/autotile/fallback_mode = 0
+32/occluder_offset = Vector2( 0, 0 )
+32/navigation_offset = Vector2( 0, 0 )
+32/shape_offset = Vector2( 0, 0 )
+32/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+32/shape_one_way = false
+32/shape_one_way_margin = 0.0
+32/shapes = [  ]
+32/z_index = 0
+33/name = "GrasslandsBiome 1.0.png 33"
+33/texture = ExtResource( 1 )
+33/tex_offset = Vector2( 0, 0 )
+33/modulate = Color( 1, 1, 1, 1 )
+33/region = Rect2( 160, 128, 32, 32 )
+33/tile_mode = 1
+33/autotile/bitmask_mode = 0
+33/autotile/bitmask_flags = [  ]
+33/autotile/icon_coordinate = Vector2( 0, 0 )
+33/autotile/tile_size = Vector2( 32, 32 )
+33/autotile/spacing = 0
+33/autotile/occluder_map = [  ]
+33/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 39 ) ]
+33/autotile/priority_map = [  ]
+33/autotile/z_index_map = [  ]
+33/autotile/fallback_mode = 0
+33/occluder_offset = Vector2( 0, 0 )
+33/navigation_offset = Vector2( 0, 0 )
+33/shape_offset = Vector2( 0, 0 )
+33/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+33/shape_one_way = false
+33/shape_one_way_margin = 0.0
+33/shapes = [  ]
+33/z_index = 0
+34/name = "GrasslandsBiome 1.0.png 34"
+34/texture = ExtResource( 1 )
+34/tex_offset = Vector2( 0, 0 )
+34/modulate = Color( 1, 1, 1, 1 )
+34/region = Rect2( 224, 96, 32, 32 )
+34/tile_mode = 1
+34/autotile/bitmask_mode = 0
+34/autotile/bitmask_flags = [  ]
+34/autotile/icon_coordinate = Vector2( 0, 0 )
+34/autotile/tile_size = Vector2( 32, 32 )
+34/autotile/spacing = 0
+34/autotile/occluder_map = [  ]
+34/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 40 ) ]
+34/autotile/priority_map = [  ]
+34/autotile/z_index_map = [  ]
+34/autotile/fallback_mode = 0
+34/occluder_offset = Vector2( 0, 0 )
+34/navigation_offset = Vector2( 0, 0 )
+34/shape_offset = Vector2( 0, 0 )
+34/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+34/shape_one_way = false
+34/shape_one_way_margin = 0.0
+34/shapes = [  ]
+34/z_index = 0
+35/name = "GrasslandsBiome 1.0.png 35"
+35/texture = ExtResource( 1 )
+35/tex_offset = Vector2( 0, 0 )
+35/modulate = Color( 1, 1, 1, 1 )
+35/region = Rect2( 256, 96, 32, 32 )
+35/tile_mode = 1
+35/autotile/bitmask_mode = 0
+35/autotile/bitmask_flags = [  ]
+35/autotile/icon_coordinate = Vector2( 0, 0 )
+35/autotile/tile_size = Vector2( 32, 32 )
+35/autotile/spacing = 0
+35/autotile/occluder_map = [  ]
+35/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 41 ) ]
+35/autotile/priority_map = [  ]
+35/autotile/z_index_map = [  ]
+35/autotile/fallback_mode = 0
+35/occluder_offset = Vector2( 0, 0 )
+35/navigation_offset = Vector2( 0, 0 )
+35/shape_offset = Vector2( 0, 0 )
+35/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+35/shape_one_way = false
+35/shape_one_way_margin = 0.0
+35/shapes = [  ]
+35/z_index = 0
+36/name = "GrasslandsBiome 1.0.png 36"
+36/texture = ExtResource( 1 )
+36/tex_offset = Vector2( 0, 0 )
+36/modulate = Color( 1, 1, 1, 1 )
+36/region = Rect2( 288, 96, 32, 32 )
+36/tile_mode = 1
+36/autotile/bitmask_mode = 0
+36/autotile/bitmask_flags = [  ]
+36/autotile/icon_coordinate = Vector2( 0, 0 )
+36/autotile/tile_size = Vector2( 32, 32 )
+36/autotile/spacing = 0
+36/autotile/occluder_map = [  ]
+36/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 42 ) ]
+36/autotile/priority_map = [  ]
+36/autotile/z_index_map = [  ]
+36/autotile/fallback_mode = 0
+36/occluder_offset = Vector2( 0, 0 )
+36/navigation_offset = Vector2( 0, 0 )
+36/shape_offset = Vector2( 0, 0 )
+36/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+36/shape_one_way = false
+36/shape_one_way_margin = 0.0
+36/shapes = [  ]
+36/z_index = 0
+37/name = "GrasslandsBiome 1.0.png 37"
+37/texture = ExtResource( 1 )
+37/tex_offset = Vector2( 0, 0 )
+37/modulate = Color( 1, 1, 1, 1 )
+37/region = Rect2( 256, 32, 32, 32 )
+37/tile_mode = 1
+37/autotile/bitmask_mode = 0
+37/autotile/bitmask_flags = [  ]
+37/autotile/icon_coordinate = Vector2( 0, 0 )
+37/autotile/tile_size = Vector2( 32, 32 )
+37/autotile/spacing = 0
+37/autotile/occluder_map = [  ]
+37/autotile/navpoly_map = [  ]
+37/autotile/priority_map = [  ]
+37/autotile/z_index_map = [  ]
+37/autotile/fallback_mode = 0
+37/occluder_offset = Vector2( 0, 0 )
+37/navigation_offset = Vector2( 0, 0 )
+37/shape_offset = Vector2( 0, 0 )
+37/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+37/shape_one_way = false
+37/shape_one_way_margin = 0.0
+37/shapes = [  ]
+37/z_index = 0
+
+[sub_resource type="NavigationPolygon" id=61]
+vertices = PoolVector2Array( 249, 68, 247, 229, 236, 247, 24, 245, 13, 242, 11, 229, 6, 20, 10, 12, 15, 9, 31, 6, 239, 6, 249, 56, 252, 19, 250, 11 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ), PoolIntArray( 12, 11, 10, 13 ) ]
+outlines = [ PoolVector2Array( 11, 229, 13, 242, 24, 245, 236, 247, 247, 229, 249, 68, 249, 56, 252, 19, 250, 11, 239, 6, 31, 6, 15, 9, 10, 12, 6, 20 ) ]
 
 [node name="Level1-Tutorial" type="Node2D"]
 position = Vector2( 124, -19 )
 
 [node name="PlayerUIController" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -31 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
+show_collision = true
+compatibility_mode = true
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 1, 0, 6, 1, 0, 7, 2, 0, 65536, 12, 0, 65537, 17, 0, 65538, 17, 0, 65539, 17, 0, 65540, 17, 0, 65541, 17, 0, 65542, 17, 0, 65543, 3, 0, 131072, 7, 0, 131073, 17, 0, 131074, 17, 0, 131075, 17, 0, 131076, 9, 0, 131077, 11, 0, 131078, 17, 0, 131079, 16, 0, 196608, 12, 0, 196609, 17, 0, 196610, 17, 0, 196611, 17, 0, 196612, 16, 0, 196613, 12, 0, 196614, 17, 0, 196615, 16, 0, 262144, 7, 0, 262145, 17, 0, 262146, 17, 0, 262147, 17, 0, 262148, 16, 0, 262149, 12, 0, 262150, 17, 0, 262151, 3, 0, 327680, 12, 0, 327681, 17, 0, 327682, 17, 0, 327683, 17, 0, 327684, 15, 0, 327685, 13, 0, 327686, 17, 0, 327687, 16, 0, 393216, 7, 0, 393217, 17, 0, 393218, 17, 0, 393219, 17, 0, 393220, 17, 0, 393221, 17, 0, 393222, 17, 0, 393223, 3, 0, 458752, 6, 0, 458753, 5, 0, 458754, 5, 0, 458755, 5, 0, 458756, 5, 0, 458757, 5, 0, 458758, 5, 0, 458759, 4, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 65536, 12, 0, 65537, 17, 0, 65538, 17, 0, 65539, 17, 0, 65540, 17, 0, 65541, 17, 0, 65542, 17, 0, 65543, 8, 0, 65544, 11, 0, 131072, 7, 0, 131073, 17, 0, 131074, 17, 0, 131075, 17, 0, 131076, 9, 0, 131077, 11, 0, 131078, 17, 0, 131079, 16, 0, 131080, 7, 0, 196608, 12, 0, 196609, 17, 0, 196610, 17, 0, 196611, 17, 0, 196612, 16, 0, 196613, 12, 0, 196614, 17, 0, 196615, 16, 0, 262144, 7, 0, 262145, 17, 0, 262146, 17, 0, 262147, 17, 0, 262148, 16, 0, 262149, 12, 0, 262150, 17, 0, 262151, 3, 0, 327680, 12, 0, 327681, 17, 0, 327682, 17, 0, 327683, 17, 0, 327684, 15, 0, 327685, 13, 0, 327686, 17, 0, 327687, 16, 0, 393216, 7, 0, 393217, 17, 0, 393218, 17, 0, 393219, 17, 0, 393220, 17, 0, 393221, 17, 0, 393222, 17, 0, 393223, 3, 0, 458752, 6, 0, 458753, 5, 0, 458754, 5, 0, 458755, 5, 0, 458756, 5, 0, 458757, 5, 0, 458758, 5, 0, 458759, 4, 0 )
 
 [node name="MainTower" parent="." instance=ExtResource( 3 )]
 position = Vector2( 99, 128 )
 
-[node name="Basic Trooper" parent="MainTower" instance=ExtResource( 4 )]
-position = Vector2( -8, -62 )
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 61 )
+enabled = false
+travel_cost = 0.0
 
-[node name="Basic Trooper2" parent="MainTower" instance=ExtResource( 4 )]
-position = Vector2( 13, -63 )
+[node name="BasicTrooper" parent="." instance=ExtResource( 4 )]
+position = Vector2( 89, 67 )
+
+[node name="BasicTrooper2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 117, 68 )
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

@@ -10,10 +10,6 @@ namespace ITower.GlobalSetting
         private static bool _MasterVolumeAltered = false;
         private static object VolumeLock = new object();
         private static object KeyBindLock = new object();
-        private static uint scrollUp;
-        private static uint scrollDown;
-        private static uint scrollLeft;
-        private static uint scrollRight;
 
         
         public async static Task SetMasterVolume(int setVolume) 

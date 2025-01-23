@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ITower.NPCs
+namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
 {
 	public static class StatModifiers
 	{
