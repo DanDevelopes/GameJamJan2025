@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 namespace ITower.NPCsAndPlayerElements.NPCLogic
 {
@@ -7,8 +8,9 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic
         static Random rnd = new Random();
         public static void attackTarget(string npcName, int damage, int accuracy)
         {
-            if(rnd.Next(100) < accuracy)
+            if (rnd.Next(100) < accuracy)
             {
+                
                 SharedStats.getStats(npcName).health -= damage;
             }
         }

@@ -16,9 +16,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
         static Dictionary<string, NPCStats> allNPCStats;
         public static void addStats(string npcName, NPCStats stats)
         {
-            GD.Print("Testing allNPCStats Dictionary");
             allNPCStats.Add(npcName, stats);
-            GD.Print("Tested allNPCStats Dictionary");
         }
         public static NPCStats getStats(string npcName) 
         {

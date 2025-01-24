@@ -3,6 +3,9 @@ using ITower.NPCsAndPlayerElements.NPCLogic;
 using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 public class GroundMobileLogic : Node2D
@@ -13,38 +16,38 @@ public class GroundMobileLogic : Node2D
     double tau = Math.PI * 2;
     int sweepStage;
     float rotation;
-    Vector2 visionEnd;
+    
+
+    
+
     NPCStats stats;
-    RayCast2D entityVison;
-    Timer shootTimer;
-    Timer readyToFireTimer;
     NavigationAgent2D navAgent;
     double visionWidthInRadions;
-    int rangeOfView;
+    int rangeOfView = 200;
     bool isMobile;
     List<String> Enemies;
     private string npcName;
     private Vector2 NPCLocation;
+    private List<RayCast2D> visionCasts;
+    string targetNPC;
+    private bool isDebug = true;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
-        entityVison = GetNode<RayCast2D>("EntityVison");
-        shootTimer = GetNode<Timer>("ShootTimer");
-        readyToFireTimer = GetNode<Timer>("ReadyToFireTimer"); ;
+        visionCasts = new List<RayCast2D>();
+        visionCasts.Add(GetNode<RayCast2D>("EntityVisonRight"));
+        visionCasts.Add(GetNode<RayCast2D>("EntityVisonMidRight"));
+        visionCasts.Add(GetNode<RayCast2D>("EntityVisonCenter"));
+        visionCasts.Add(GetNode<RayCast2D>("EntityVisonMidLeft"));
+        visionCasts.Add(GetNode<RayCast2D>("EntityVisonLeft"));
         navAgent = GetNode<NavigationAgent2D>("NavAgent");
-        GD.Print($"{this.Name} is init");
-        if (navAgent == null) ;
     }
     public void ImportNpc(string npcName, bool isMobile, float visionWidth)
     {
         stats = new NPCStats();
         this.npcName = npcName;
-
-        GD.Print(npcName);
         var npcType = Regex.Replace(npcName, @"[\d-]", string.Empty);
-        GD.Print($"troop type:{npcType}");
         var multipliers = NPCWieghting.npcMultipliers[npcType];
         stats.health = (int) Math.Round(stats.health * multipliers.health);
         stats.maxHealth = (int) Math.Round(stats.maxHealth * multipliers.maxHealth);
@@ -55,35 +58,58 @@ public class GroundMobileLogic : Node2D
         stats.sanity = (int)Math.Round(stats.sanity * multipliers.sanity);
         stats.moral = (int)Math.Round(stats.moral * multipliers.moral);
         stats.intelegent = (int)Math.Round(stats.intelegent * multipliers.intelegent);
-        GD.Print("Inintialized stats");
         SharedStats.addStats(npcName, stats);
         this.isMobile = isMobile;
-        visionWidthInRadions = visionWidth;
-        
+        visionWidthInRadions = ((double)stats.feildOfView / 100) * tau;
+        VisionSetup();
     }
-    public void VisionSweep()
+    public void VisionSetup()
     {
-        const int totalSweepStages = 20;
-        var sweepPoint = (tau - visionWidthInRadions) / totalSweepStages;
+        int i = 1;
+        List<Vector2> debugVectors = new List<Vector2>();
+        List<Line2D> visionLine = new List<Line2D>();
+        foreach (var cast in visionCasts)
+        {
+            var sweepPoint = visionWidthInRadions / visionCasts.Count;
+            var sweepAngle = sweepPoint * i;
+            sweepAngle = sweepAngle - visionWidthInRadions / 2;
+            cast.CastTo = new Vector2()
+                {
+                    x = rangeOfView * (float)Math.Cos(sweepAngle) + this.Position.x,
+                    y = rangeOfView * (float)Math.Sin(sweepAngle) + this.Position.y
+            };
+            if (isDebug) 
+            {
+                debugVectors.Clear();
+                debugVectors.Add(
+                    cast.CastTo = new Vector2()
+                    {
+                        x = this.Position.x,
+                        y = this.Position.y
+                    }
+                    );
+                debugVectors.Add(
+                    cast.CastTo = new Vector2()
+                    {
+                        x = rangeOfView * (float)Math.Cos(sweepAngle) + this.Position.x,
+                        y = rangeOfView * (float)Math.Sin(sweepAngle) + this.Position.y
+                    }
+                    );
+                Line2D line = new Line2D();
+                line.Position = cast.Position;
+                line.Points = debugVectors.ToArray();
+                line.Width = 1;
+                this.AddChild(line);
+                visionLine.Add(line);
+            }
 
-        if (sweepStage >= totalSweepStages)
-            sweepStage = 0;
-
-        var sweepAngle = sweepPoint * sweepStage + (visionWidthInRadions / 2);
-
-        visionEnd = new Vector2() { 
-            x = rangeOfView * (float)Math.Cos(sweepAngle), 
-            y = rangeOfView * (float)Math.Sin(sweepAngle)
-        };
+            i++;
+        }
         
-        sweepStage++;
-        entityVison.CastTo = visionEnd;
-        entityVison.ForceRaycastUpdate();
     }
     
     public void SetVisionRange(int range)
     {
-        if(isMobile)
         rangeOfView = range;
     }
     public Dictionary<string, bool> GetVisibleEntities()
@@ -96,13 +122,38 @@ public class GroundMobileLogic : Node2D
     {
         this.Enemies = Enemies;
     }
+    public bool IsTargetInsight() 
+    {
+        foreach (var cast in visionCasts)
+        {
+            if (cast.GetCollider() != null)
+            {
+                var collider = cast.GetCollider();
+                if (collider is Node2D entity )
+                {
+                    if(entity.Name == npcName)
+                    {
+                        return false;
+                    }
+                    targetNPC = entity.Name;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
     public void SetMovementSpeed() 
     {
         
     }
-    public void SetReadyToFire()
+    public bool Shoot()
     {
-        
+        if(IsTargetInsight())
+        {
+            CombatElement.attackTarget(targetNPC, stats.damage, stats.accuracy);
+            return true;
+        }
+        return false;
     }
 
     public void SetModifiersAndWieghting() 
@@ -115,7 +166,6 @@ public class GroundMobileLogic : Node2D
     }
     public Vector2 GetNewLocation()
     {
-        GD.Print(stats.speed);
         var newlocation = navAgent.GetNextLocation();
         var direction = GlobalPosition.DirectionTo(newlocation);
 
@@ -124,7 +174,6 @@ public class GroundMobileLogic : Node2D
         rotation = NPCLocation.y - newlocation.y / NPCLocation.x - newlocation.x; 
         var velocity = direction * stats.speed * 2;
         rotation = velocity.Angle();
-        GD.Print(direction);
         return velocity;
         
     }
@@ -136,11 +185,4 @@ public class GroundMobileLogic : Node2D
     {
         NPCLocation = location;
     }
-    public NPCStats transmitStats()
-    {
-        stats = SharedStats.getStats(npcName);
-        return stats;
-    }
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-
 }

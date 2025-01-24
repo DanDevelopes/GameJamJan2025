@@ -1,9 +1,12 @@
 using Godot;
+using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 using System;
 public class BasicTrooper : KinematicBody2D
 {
     GroundMobileLogic ai;
-	NavigationAgent2D navAgent;
+	bool init = false;
+	AnimatedSprite animatedSprite;
+	NPCStats npcStats;
 	public BasicTrooper() 
 	{
 	
@@ -11,41 +14,86 @@ public class BasicTrooper : KinematicBody2D
 	public override void _Ready()
 	{
         ai = GetNode<GroundMobileLogic>("GroundMobileAI");
-        GD.Print(this.Name);
-        ai.ImportNpc(this.Name, true, 1.5f);
-		navAgent = GetNode<NavigationAgent2D>("NavAgent");
-		navAgent.Connect("velocity_computed", this, nameof(_OnVelocityComputed));
+        ai.ImportNpc(this.Name, true, 0.2f);
+		animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+		npcStats = SharedStats.getStats(this.Name);
     }
 
     public override void _PhysicsProcess(float delta)
 	{
-		base._Process(delta);
-		ai.SetNPCLocation(this.Position);
-			
-			//var newlocation = navAgent.GetNextLocation();
-			//var direction = GlobalPosition.DirectionTo(newlocation);
-			//var velocity = direction * navAgent.MaxSpeed;
-			MoveAndSlide(ai.GetNewLocation());
+        npcStats = SharedStats.getStats(this.Name);
+		if (npcStats.health < 1)
+		{
+			this.QueueFree();
+		}
+        if (isShooting)
+        {
+            isShooting = IsStillShoot(delta);
+            animatedSprite.Frame = animationFrame;
+            return;
+        }
+        if (ai.IsTargetInsight())
+        {
+            isShooting = true;
+            animationFrame = 0;
+
+        }
+        base._Process(delta);
+		Initualize();
+		
+        ai.SetNPCLocation(this.Position);
+		
+        MoveAndSlide(ai.GetNewLocation());
 		this.Rotation = ai.GetRotation();
-			//GD.Print(GlobalPosition.DirectionTo(newlocation));
-        
-        //
-        //GD.Print(ai.GetNewLocation());
 		
     }
-	private void Shoot() 
+    private bool IsStillShoot(float delta)
+    {
+        shootTimer += delta;
+        if (ai.Shoot() && animationFrame > 0)
+        {
+            animationFrame = (int)shootTimer;
+            return true;
+        }
+        if (animationFrame <= 7)
+        {
+            animationFrame = (int)shootTimer;
+            return true;
+        }
+		if (animationFrame > 7)
+		{
+			shootTimer = 4;
+			animationFrame = 4;
+			return false;
+		}
+		
+        return false;
+    }
+    private void Shoot() 
 	{
-	
+		
 	}
 	
 	private void Alert() 
 	{
 	
 	}
+	private void Initualize()
+	{
+		if(!init)
+		{
+            ai.VisionSetup();
+			init = true;
+        }
 
+	}
 	private int shootReadyInSamples;
 	private int shotFinishedInSamples;
-	public override void _Input(InputEvent @event)
+    private float shootTimer;
+    private bool isShooting;
+    private int animationFrame;
+
+    public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
 		if (@event is InputEventMouseButton eventMouseButton)
@@ -53,18 +101,11 @@ public class BasicTrooper : KinematicBody2D
 			if (Input.IsMouseButtonPressed(1))
 			{
 				var location = GetViewport().GetMousePosition();
-
-                GD.Print($"Reaching mouseclick {location}");
-				//navAgent.TargetLocation = location;
 				ai.TargetLocation(location);
 				
 			}
 		}
     }
-	private void _OnVelocityComputed(Vector3 volocity)
-	{
-
-	}
     private static class Animate
 	{
 		static Animate()
