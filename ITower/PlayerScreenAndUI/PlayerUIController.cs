@@ -1,17 +1,26 @@
 using Godot;
 using ITower.GlobalSetting;
+using ITower.Level_Assets;
+using System;
 
 public class PlayerUIController : Node2D
 {
-    Camera2D pOVCam;
+    Camera2D povCam;
     public override void _Ready()
     {
-        pOVCam = GetNode<Camera2D>("POVCam");
+        povCam = GetNode<Camera2D>("POVCam");
     }
 
     public override void _Process(float delta)
     {
 
+        var viewportMousePos = GetViewport().GetMousePosition();
+        var cameraZoom = povCam.Zoom;
+        var cameraPosition = povCam.GlobalPosition;
+        var viewportSize = GetViewport().Size;
+
+        var worldMousePos = (viewportMousePos - viewportSize / 2) * cameraZoom + cameraPosition;
+        SharedMapLogic.trueMousePosition = worldMousePos;
     }
     public override void _UnhandledInput(InputEvent @event)
     {
@@ -28,17 +37,17 @@ public class PlayerUIController : Node2D
                 pos.x -= 5;
             if (eventKey.Pressed && eventKey.Scancode == GlobalSettings.KeyBindings.GetKeyBindings()[GlobalSettings.KeyBindings.Actions.zoomin])
             {
-                var zoom = pOVCam.Zoom;
+                var zoom = povCam.Zoom;
                 zoom.x = zoom.x * 0.8f;
                 zoom.y = zoom.y * 0.8f;
-                pOVCam.Zoom = zoom;
+                povCam.Zoom = zoom;
             }
             if (eventKey.Pressed && eventKey.Scancode == GlobalSettings.KeyBindings.GetKeyBindings()[GlobalSettings.KeyBindings.Actions.zoomout])
             {
-                var zoom = pOVCam.Zoom;
+                var zoom = povCam.Zoom;
                 zoom.x = zoom.x * 1.2f;
                 zoom.y = zoom.y * 1.2f;
-                pOVCam.Zoom = zoom;
+                povCam.Zoom = zoom;
                 
             }
         }

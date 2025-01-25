@@ -3,9 +3,6 @@ using ITower.NPCsAndPlayerElements.NPCLogic;
 using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 public class GroundMobileLogic : Node2D
@@ -30,21 +27,18 @@ public class GroundMobileLogic : Node2D
     private Vector2 NPCLocation;
     private List<RayCast2D> visionCasts;
     string targetNPC;
-    private bool isDebug = true;
+    private bool isDebug = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         visionCasts = new List<RayCast2D>();
-        visionCasts.Add(GetNode<RayCast2D>("EntityVisonRight"));
-        visionCasts.Add(GetNode<RayCast2D>("EntityVisonMidRight"));
-        visionCasts.Add(GetNode<RayCast2D>("EntityVisonCenter"));
-        visionCasts.Add(GetNode<RayCast2D>("EntityVisonMidLeft"));
-        visionCasts.Add(GetNode<RayCast2D>("EntityVisonLeft"));
+        
         navAgent = GetNode<NavigationAgent2D>("NavAgent");
     }
-    public void ImportNpc(string npcName, bool isMobile, float visionWidth)
+    public void ImportNpc(string npcName, bool isMobile, float visionWidth, RID rID)
     {
+        OtherElement.npcNames.Add(npcName);
         stats = new NPCStats();
         this.npcName = npcName;
         var npcType = Regex.Replace(npcName, @"[\d-]", string.Empty);
@@ -58,13 +52,23 @@ public class GroundMobileLogic : Node2D
         stats.sanity = (int)Math.Round(stats.sanity * multipliers.sanity);
         stats.moral = (int)Math.Round(stats.moral * multipliers.moral);
         stats.intelegent = (int)Math.Round(stats.intelegent * multipliers.intelegent);
+        stats.isPlayer = multipliers.isPlayer;
         SharedStats.addStats(npcName, stats);
         this.isMobile = isMobile;
         visionWidthInRadions = ((double)stats.feildOfView / 100) * tau;
-        VisionSetup();
+        VisionSetup(rID);
     }
-    public void VisionSetup()
+    public void VisionSetup(RID rID)
     {
+        for(int casts = 0; casts < 20; casts++)
+        {
+            RayCast2D ray = new RayCast2D();
+            ray.CollisionMask = 2;
+            ray.Enabled = true;
+            ray.AddExceptionRid(rID);
+            this.AddChild(ray);
+            visionCasts.Add(ray);
+        }
         int i = 1;
         List<Vector2> debugVectors = new List<Vector2>();
         List<Line2D> visionLine = new List<Line2D>();
@@ -126,11 +130,13 @@ public class GroundMobileLogic : Node2D
     {
         foreach (var cast in visionCasts)
         {
+            cast.ForceRaycastUpdate();
             if (cast.GetCollider() != null)
             {
                 var collider = cast.GetCollider();
                 if (collider is Node2D entity )
                 {
+                    GD.Print(entity.Name);
                     if(entity.Name == npcName)
                     {
                         return false;
@@ -150,7 +156,7 @@ public class GroundMobileLogic : Node2D
     {
         if(IsTargetInsight())
         {
-            CombatElement.attackTarget(targetNPC, stats.damage, stats.accuracy);
+            OtherElement.attackTarget(targetNPC, stats.damage, stats.accuracy);
             return true;
         }
         return false;
@@ -166,16 +172,19 @@ public class GroundMobileLogic : Node2D
     }
     public Vector2 GetNewLocation()
     {
-        var newlocation = navAgent.GetNextLocation();
-        var direction = GlobalPosition.DirectionTo(newlocation);
+        if (NPCLocation != navAgent.GetFinalLocation())
+        {
+            var newlocation = navAgent.GetNextLocation();
+            var direction = GlobalPosition.DirectionTo(newlocation);
 
-        
-        
-        rotation = NPCLocation.y - newlocation.y / NPCLocation.x - newlocation.x; 
-        var velocity = direction * stats.speed * 2;
-        rotation = velocity.Angle();
-        return velocity;
-        
+
+
+            rotation = NPCLocation.y - newlocation.y / NPCLocation.x - newlocation.x;
+            var velocity = direction * stats.speed * 2;
+            rotation = velocity.Angle();
+            return velocity;
+        }
+        return NPCLocation;
     }
     public void TargetLocation(Vector2 location)
     {
@@ -184,5 +193,6 @@ public class GroundMobileLogic : Node2D
     public void SetNPCLocation(Vector2 location) 
     {
         NPCLocation = location;
+        OtherElement.AddPosition(npcName, location);
     }
 }

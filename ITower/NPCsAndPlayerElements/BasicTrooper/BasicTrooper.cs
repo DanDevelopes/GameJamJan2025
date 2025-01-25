@@ -1,4 +1,5 @@
 using Godot;
+using ITower.Level_Assets;
 using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 using System;
 public class BasicTrooper : KinematicBody2D
@@ -14,32 +15,35 @@ public class BasicTrooper : KinematicBody2D
 	public override void _Ready()
 	{
         ai = GetNode<GroundMobileLogic>("GroundMobileAI");
-        ai.ImportNpc(this.Name, true, 0.2f);
+        ai.ImportNpc(this.Name, true, 0.2f, GetRid());
 		animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
 		npcStats = SharedStats.getStats(this.Name);
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _Process(float delta)
 	{
         npcStats = SharedStats.getStats(this.Name);
 		if (npcStats.health < 1)
 		{
 			this.QueueFree();
 		}
-        if (isShooting)
+        if (isShooting && shootMode)
         {
-            isShooting = IsStillShoot(delta);
+            var result = IsStillShoot(delta);
+			shootMode = result;
+			isShooting = result;
             animatedSprite.Frame = animationFrame;
             return;
         }
         if (ai.IsTargetInsight())
         {
             isShooting = true;
+			shootMode = true;
             animationFrame = 0;
-
+			return;
         }
+        animationFrame = 0;
         base._Process(delta);
-		Initualize();
 		
         ai.SetNPCLocation(this.Position);
 		
@@ -49,8 +53,8 @@ public class BasicTrooper : KinematicBody2D
     }
     private bool IsStillShoot(float delta)
     {
-        shootTimer += delta;
-        if (ai.Shoot() && animationFrame > 0)
+        shootTimer += delta * 5;
+        if (animationFrame > 5 && ai.Shoot())
         {
             animationFrame = (int)shootTimer;
             return true;
@@ -62,12 +66,15 @@ public class BasicTrooper : KinematicBody2D
         }
 		if (animationFrame > 7)
 		{
-			shootTimer = 4;
-			animationFrame = 4;
-			return false;
+			shootTimer = 5;
+			animationFrame = 5;
 		}
-		
-        return false;
+		if (!ai.IsTargetInsight())
+		{
+			shootTimer = 0;
+			animationFrame = 0;
+		}
+		return false;
     }
     private void Shoot() 
 	{
@@ -78,19 +85,12 @@ public class BasicTrooper : KinematicBody2D
 	{
 	
 	}
-	private void Initualize()
-	{
-		if(!init)
-		{
-            ai.VisionSetup();
-			init = true;
-        }
-
-	}
+	
 	private int shootReadyInSamples;
 	private int shotFinishedInSamples;
     private float shootTimer;
     private bool isShooting;
+	bool shootMode;
     private int animationFrame;
 
     public override void _Input(InputEvent @event)
@@ -100,9 +100,8 @@ public class BasicTrooper : KinematicBody2D
 		{ 
 			if (Input.IsMouseButtonPressed(1))
 			{
-				var location = GetViewport().GetMousePosition();
+				var location = SharedMapLogic.trueMousePosition;
 				ai.TargetLocation(location);
-				
 			}
 		}
     }

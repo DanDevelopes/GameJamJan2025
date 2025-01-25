@@ -23,6 +23,8 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers.sanity = 0.70f;
             multipliers.moral = 0.50f;
             multipliers.intelegent = 0.40f;
+            multipliers.rangeOfView = 0.50f;
+            multipliers.isPlayer = true;
             npcMultipliers["BasicTrooper"] = multipliers;
 
             multipliers = new Multipliers();
@@ -33,8 +35,10 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers.accuracy = 0.40f;
             multipliers.feildOfView = 0.05f;
             multipliers.sanity = 0;
-            multipliers.moral = 1f;
+            multipliers.moral = 0;
             multipliers.intelegent = 0.40f;
+            multipliers.rangeOfView = 1f;
+            multipliers.isPlayer = true;
             npcMultipliers["SmallTurret"] = multipliers;
 
             // Eyeborgs
@@ -44,13 +48,14 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers.speed = 0.50f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
-            multipliers.feildOfView = 0.60f;
+            multipliers.feildOfView = 0.20f;
             multipliers.sanity = 0.70f;
             multipliers.moral = 0.50f;
             multipliers.intelegent = 0.40f;
+            multipliers.isPlayer = false;
             npcMultipliers["Eyeborg"] = multipliers;
 
-            // Stormers
+            // Slithem
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
@@ -58,10 +63,12 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
             multipliers.feildOfView = 0.60f;
+            multipliers.rangeOfView = 0.10f;
             multipliers.sanity = 0.70f;
             multipliers.moral = 0.50f;
-            multipliers.intelegent = 0.40f;
-            npcMultipliers["Stormer"] = multipliers;
+            multipliers.intelegent = 0.01f;
+            multipliers.isPlayer = false;
+            npcMultipliers["Slithem"] = multipliers;
 
             // Eyeclopses
             multipliers = new Multipliers();
@@ -70,10 +77,12 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers.speed = 0.50f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
-            multipliers.feildOfView = 0.60f;
+            multipliers.feildOfView = 0.20f;
             multipliers.sanity = 0.70f;
             multipliers.moral = 0.50f;
             multipliers.intelegent = 0.40f;
+            multipliers.rangeOfView = 40f;
+            multipliers.isPlayer = false;
             npcMultipliers["Eyeclopse"] = multipliers;
 
         }
@@ -88,6 +97,8 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             public float sanity;
             public float moral;
             public float intelegent;
+            public float rangeOfView;
+            public bool isPlayer;
         }
     }
 }

@@ -1,8 +1,9 @@
 using Godot;
+using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 using System;
 using System.ComponentModel;
 
-public class SmallTurret : Node2D
+public class SmallTurret : KinematicBody2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -22,7 +23,7 @@ public class SmallTurret : Node2D
     public override void _Ready()
     {
         groundMobileLogic = GetNode<GroundMobileLogic>("GroundMobileAI");
-        groundMobileLogic.ImportNpc(Name, false, 0.44f);
+        groundMobileLogic.ImportNpc(Name, false, 0.44f, GetRid());
         turret = GetNode<AnimatedSprite>("GroundMobileAI/AnimatedBody");
         turret.Frame = 0;
     }
@@ -30,7 +31,11 @@ public class SmallTurret : Node2D
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-         
+        var npcStats = SharedStats.getStats(this.Name);
+        if (npcStats.health < 1)
+        {
+            this.QueueFree();
+        }
         if (isShooting)
         {
             isShooting = IsStillShoot(delta);
@@ -59,7 +64,7 @@ public class SmallTurret : Node2D
         {
             directionSwitch = true;
         }
-        groundMobileLogic.Rotation = rotationStage;
+        //groundMobileLogic.Rotation = rotationStage;
         turret.Frame = animationFrame;
     }
 

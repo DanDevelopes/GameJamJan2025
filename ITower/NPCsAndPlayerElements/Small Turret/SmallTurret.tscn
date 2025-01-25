@@ -4,6 +4,9 @@
 [ext_resource path="res://NPCsAndPlayerElements/Small Turret/Images/SmallTurret.png" type="Texture" id=2]
 [ext_resource path="res://NPCsAndPlayerElements/Small Turret/SmallTurret.cs" type="Script" id=3]
 
+[sub_resource type="CircleShape2D" id=8]
+radius = 11.3333
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
@@ -40,10 +43,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=8]
-
-[node name="SmallTurret" type="Node2D"]
+[node name="SmallTurret" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 1.5, 1.5 )
+z_as_relative = false
+shape = SubResource( 8 )
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
@@ -53,18 +60,3 @@ frames = SubResource( 2 )
 [node name="AnimatedBody" type="AnimatedSprite" parent="GroundMobileAI"]
 frames = SubResource( 7 )
 animation = "New Anim"
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-scale = Vector2( 1.5, 1.5 )
-shape = SubResource( 8 )
-
-[node name="TargetSignal" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSignal"]
-scale = Vector2( 1.5, 1.5 )
-shape = SubResource( 8 )

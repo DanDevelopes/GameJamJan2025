@@ -17,5 +17,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
         public int sanity = 100;
         public int moral = 100;
         public int intelegent = 100;
+        public int rangeOfView = 100;
+        public bool isPlayer = false;
     }
 }
