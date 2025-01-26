@@ -45,7 +45,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
-            multipliers.speed = 0.50f;
+            multipliers.speed = 0.15f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
             multipliers.feildOfView = 0.20f;
@@ -59,11 +59,11 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
-            multipliers.speed = 0.70f;
+            multipliers.speed = 0.40f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
-            multipliers.feildOfView = 0.60f;
-            multipliers.rangeOfView = 0.10f;
+            multipliers.feildOfView = 0.30f;
+            multipliers.rangeOfView = 0.20f;
             multipliers.sanity = 0.70f;
             multipliers.moral = 0.50f;
             multipliers.intelegent = 0.01f;
@@ -74,7 +74,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
-            multipliers.speed = 0.50f;
+            multipliers.speed = 0.10f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
             multipliers.feildOfView = 0.20f;

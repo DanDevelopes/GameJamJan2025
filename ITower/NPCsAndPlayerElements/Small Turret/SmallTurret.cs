@@ -1,4 +1,5 @@
 using Godot;
+using ITower.NPCsAndPlayerElements.NPCLogic;
 using ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting;
 using System;
 using System.ComponentModel;
@@ -26,6 +27,7 @@ public class SmallTurret : KinematicBody2D
         groundMobileLogic.ImportNpc(Name, false, 0.44f, GetRid());
         turret = GetNode<AnimatedSprite>("GroundMobileAI/AnimatedBody");
         turret.Frame = 0;
+        OtherElement.AddPosition(this.Name,this.Position);
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,14 +66,14 @@ public class SmallTurret : KinematicBody2D
         {
             directionSwitch = true;
         }
-        //groundMobileLogic.Rotation = rotationStage;
+        groundMobileLogic.Rotation = rotationStage;
         turret.Frame = animationFrame;
     }
 
     private bool IsStillShoot(float delta)
     {
         shootTimer += delta * 5;
-        if ( animationFrame == 1 && groundMobileLogic.Shoot())
+        if ( animationFrame == 1 && groundMobileLogic.Attack())
         {
 
             animationFrame = (int)shootTimer;

@@ -44,17 +44,17 @@ public class BasicTrooper : KinematicBody2D
         }
         animationFrame = 0;
         base._Process(delta);
+		var moveTo = ai.GetNewLocation(this.GlobalPosition);
+        ai.SetNPCLocation(this.GlobalPosition);
 		
-        ai.SetNPCLocation(this.Position);
-		
-        MoveAndSlide(ai.GetNewLocation());
+        MoveAndSlide(moveTo);
 		this.Rotation = ai.GetRotation();
 		
     }
     private bool IsStillShoot(float delta)
     {
         shootTimer += delta * 5;
-        if (animationFrame > 5 && ai.Shoot())
+        if (animationFrame > 5 && ai.Attack())
         {
             animationFrame = (int)shootTimer;
             return true;

@@ -24,11 +24,11 @@ public class GroundMobileLogic : Node2D
     bool isMobile;
     List<String> Enemies;
     private string npcName;
-    private Vector2 NPCLocation;
+    private Vector2 npcLocation;
     private List<RayCast2D> visionCasts;
     string targetNPC;
-    private bool isDebug = false;
-
+    private bool isDebug;
+    float fastestVelocity;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -50,6 +50,7 @@ public class GroundMobileLogic : Node2D
         stats.accuracy = (int) Math.Round(stats.accuracy * multipliers.accuracy);
         stats.feildOfView = (int) Math.Round(stats.feildOfView * multipliers.feildOfView);
         stats.sanity = (int)Math.Round(stats.sanity * multipliers.sanity);
+        stats.rangeOfView = (int) Math.Round(stats.rangeOfView * multipliers.rangeOfView);
         stats.moral = (int)Math.Round(stats.moral * multipliers.moral);
         stats.intelegent = (int)Math.Round(stats.intelegent * multipliers.intelegent);
         stats.isPlayer = multipliers.isPlayer;
@@ -58,54 +59,62 @@ public class GroundMobileLogic : Node2D
         visionWidthInRadions = ((double)stats.feildOfView / 100) * tau;
         VisionSetup(rID);
     }
+    private void ForcePath() 
+    {
+        navAgent.TargetLocation = navAgent.GetFinalLocation();
+        fastestVelocity = 0;
+    }
     public void VisionSetup(RID rID)
     {
-        for(int casts = 0; casts < 20; casts++)
+        RayCast2D ray;
+        List<Vector2> debugVectors;
+        List<Line2D> visionLine;
+        for (int casts = 0; casts < 20; casts++)
         {
-            RayCast2D ray = new RayCast2D();
+            ray = new RayCast2D();
             ray.CollisionMask = 2;
             ray.Enabled = true;
             ray.AddExceptionRid(rID);
+            debugVectors = new List<Vector2>();
+            visionLine = new List<Line2D>();
+            var sweepPoint = visionWidthInRadions / 20;
+            var sweepAngle = sweepPoint * casts;
+            sweepAngle = sweepAngle - visionWidthInRadions / 2;
+            ray.CastTo = new Vector2()
+            {
+                x = stats.rangeOfView * (float)Math.Cos(sweepAngle) + this.Position.x,
+                y = stats.rangeOfView * (float)Math.Sin(sweepAngle) + this.Position.y
+            };
             this.AddChild(ray);
             visionCasts.Add(ray);
-        }
-        int i = 1;
-        List<Vector2> debugVectors = new List<Vector2>();
-        List<Line2D> visionLine = new List<Line2D>();
-        foreach (var cast in visionCasts)
-        {
-            var sweepPoint = visionWidthInRadions / visionCasts.Count;
-            var sweepAngle = sweepPoint * i;
-            sweepAngle = sweepAngle - visionWidthInRadions / 2;
-            cast.CastTo = new Vector2()
-                {
-                    x = rangeOfView * (float)Math.Cos(sweepAngle) + this.Position.x,
-                    y = rangeOfView * (float)Math.Sin(sweepAngle) + this.Position.y
-            };
-            if (isDebug) 
+            if (isDebug)
             {
                 debugVectors.Clear();
                 debugVectors.Add(
-                    cast.CastTo = new Vector2()
+                    new Vector2()
                     {
                         x = this.Position.x,
                         y = this.Position.y
                     }
                     );
                 debugVectors.Add(
-                    cast.CastTo = new Vector2()
-                    {
-                        x = rangeOfView * (float)Math.Cos(sweepAngle) + this.Position.x,
-                        y = rangeOfView * (float)Math.Sin(sweepAngle) + this.Position.y
-                    }
+                    ray.CastTo
                     );
+
                 Line2D line = new Line2D();
-                line.Position = cast.Position;
+                line.Position = ray.Position;
                 line.Points = debugVectors.ToArray();
                 line.Width = 1;
                 this.AddChild(line);
                 visionLine.Add(line);
             }
+        }
+        int i = 1;
+        
+        foreach (var cast in visionCasts)
+        {
+            
+            
 
             i++;
         }
@@ -136,8 +145,8 @@ public class GroundMobileLogic : Node2D
                 var collider = cast.GetCollider();
                 if (collider is Node2D entity )
                 {
-                    GD.Print(entity.Name);
-                    if(entity.Name == npcName)
+                    GD.Print($"{stats.isPlayer} == {SharedStats.getStats(entity.Name).isPlayer}");
+                    if(entity.Name == npcName || stats.isPlayer == SharedStats.getStats(entity.Name).isPlayer)
                     {
                         return false;
                     }
@@ -152,10 +161,12 @@ public class GroundMobileLogic : Node2D
     {
         
     }
-    public bool Shoot()
+    public bool Attack()
     {
-        if(IsTargetInsight())
+        
+        if(IsTargetInsight() && stats.isPlayer != SharedStats.getStats(targetNPC).isPlayer)
         {
+            
             OtherElement.attackTarget(targetNPC, stats.damage, stats.accuracy);
             return true;
         }
@@ -170,21 +181,28 @@ public class GroundMobileLogic : Node2D
     {
         return rotation;
     }
-    public Vector2 GetNewLocation()
+    public Vector2 GetNewLocation(Vector2 getLocation)
     {
-        if (NPCLocation != navAgent.GetFinalLocation())
+        
+        if (npcLocation.DistanceTo(navAgent.GetFinalLocation()) > 2f)
         {
             var newlocation = navAgent.GetNextLocation();
             var direction = GlobalPosition.DirectionTo(newlocation);
+            
 
 
-
-            rotation = NPCLocation.y - newlocation.y / NPCLocation.x - newlocation.x;
+                
             var velocity = direction * stats.speed * 2;
             rotation = velocity.Angle();
+            if (getLocation.DistanceTo(npcLocation) < 0.01f)
+            {
+                ForcePath();
+            }
+            if(GlobalPosition.DistanceTo(velocity) > fastestVelocity)
+                fastestVelocity = GlobalPosition.DistanceTo(velocity);
             return velocity;
         }
-        return NPCLocation;
+        return npcLocation;
     }
     public void TargetLocation(Vector2 location)
     {
@@ -192,7 +210,7 @@ public class GroundMobileLogic : Node2D
     }
     public void SetNPCLocation(Vector2 location) 
     {
-        NPCLocation = location;
+        npcLocation = location;
         OtherElement.AddPosition(npcName, location);
     }
 }
