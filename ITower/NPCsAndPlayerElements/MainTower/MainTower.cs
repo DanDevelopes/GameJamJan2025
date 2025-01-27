@@ -9,7 +9,7 @@ using static ITower.GlobalSetting.GlobalSettings.KeyBindings;
 public class MainTower : KinematicBody2D
 {
 
-
+    Vector2 dropPoint;
     int resourceCounter;
 
     GroundMobileLogic ai;
