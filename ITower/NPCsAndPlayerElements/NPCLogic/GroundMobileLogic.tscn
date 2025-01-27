@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://NPCsAndPlayerElements/NPCLogic/GroundMobileLogic.cs" type="Script" id=1]
+
+[node name="GroundMobileAI" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ReadyToFireTimer" type="Timer" parent="."]
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]

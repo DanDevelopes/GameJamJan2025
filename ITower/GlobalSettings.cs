@@ -10,10 +10,6 @@ namespace ITower.GlobalSetting
         private static bool _MasterVolumeAltered = false;
         private static object VolumeLock = new object();
         private static object KeyBindLock = new object();
-        private static uint scrollUp;
-        private static uint scrollDown;
-        private static uint scrollLeft;
-        private static uint scrollRight;
 
         
         public async static Task SetMasterVolume(int setVolume) 
@@ -50,7 +46,10 @@ namespace ITower.GlobalSetting
                 scrollleft,
                 scrollright,
                 zoomin,
-                zoomout
+                zoomout,
+                DropSmallTurretAtLocation,
+                RequestBasicTroop,
+                DropBombAtLocation
             };
             static private Dictionary<Actions, uint> keyBinds;  
             static KeyBindings()
@@ -65,6 +64,9 @@ namespace ITower.GlobalSetting
                     keyBinds[Actions.scrollright] = (uint)KeyList.D;
                     keyBinds[Actions.zoomin] = (uint)KeyList.R;
                     keyBinds[Actions.zoomout] = (uint)KeyList.F;
+                    keyBinds[Actions.DropSmallTurretAtLocation] = (uint)KeyList.E;
+                    keyBinds[Actions.RequestBasicTroop] = (uint)KeyList.T;
+                    keyBinds[Actions.DropBombAtLocation] = (uint)KeyList.X;
                 }
                 
             }
