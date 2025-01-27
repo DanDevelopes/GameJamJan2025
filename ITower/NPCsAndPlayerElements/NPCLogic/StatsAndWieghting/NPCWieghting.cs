@@ -28,7 +28,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             npcMultipliers["BasicTrooper"] = multipliers;
 
             multipliers = new Multipliers();
-            multipliers.health = 0.60f;
+            multipliers.health = 1f;
             multipliers.maxHealth = 1f;
             multipliers.speed = 0;
             multipliers.damage = 0.05f;
@@ -41,25 +41,40 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers.isPlayer = true;
             npcMultipliers["SmallTurret"] = multipliers;
 
+            multipliers = new Multipliers();
+            multipliers.health = 5f;
+            multipliers.maxHealth = 1f;
+            multipliers.speed = 0;
+            multipliers.damage = 0f;
+            multipliers.accuracy = 0f;
+            multipliers.feildOfView = 0f;
+            multipliers.sanity = 0;
+            multipliers.moral = 0;
+            multipliers.intelegent = 0f;
+            multipliers.rangeOfView = 0f;
+            multipliers.isPlayer = true;
+            npcMultipliers["MainTower"] = multipliers;
+
             // Eyeborgs
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
-            multipliers.speed = 0.15f;
+            multipliers.speed = 0.10f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
-            multipliers.feildOfView = 0.20f;
+            multipliers.feildOfView = 0.15f;
+            multipliers.rangeOfView = 0.60f;
             multipliers.sanity = 0.70f;
             multipliers.moral = 0.50f;
             multipliers.intelegent = 0.40f;
             multipliers.isPlayer = false;
-            npcMultipliers["Eyeborg"] = multipliers;
+            npcMultipliers["EyeBorg"] = multipliers;
 
             // Slithem
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
-            multipliers.speed = 0.40f;
+            multipliers.speed = 0.25f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
             multipliers.feildOfView = 0.30f;

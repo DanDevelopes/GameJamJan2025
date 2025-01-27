@@ -8,16 +8,33 @@ public class BasicTrooper : KinematicBody2D
 	bool init = false;
 	AnimatedSprite animatedSprite;
 	NPCStats npcStats;
-	public BasicTrooper() 
+	Selecter selecter;
+    bool isSelected;
+	Vector2 initailPosition;
+	bool initGone = false;
+	public BasicTrooper()
 	{
-	
+
 	}
+	public void SetInitailPosition(Vector2 sentTo) 
+	{
+        initailPosition = sentTo;
+    }
 	public override void _Ready()
 	{
+		selecter = GetNode<Selecter>("Selecter");
         ai = GetNode<GroundMobileLogic>("GroundMobileAI");
-        ai.ImportNpc(this.Name, true, 0.2f, GetRid());
+        this.Name = ai.ImportNpc(this.Name, true, 0.2f, GetRid());
 		animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
 		npcStats = SharedStats.getStats(this.Name);
+		if(initailPosition != null) 
+		{
+			ai.TargetLocation(initailPosition);
+		}
+		else
+		{
+			ai.TargetLocation(GlobalPosition);
+		}
     }
 
     public override void _Process(float delta)
@@ -48,8 +65,14 @@ public class BasicTrooper : KinematicBody2D
         ai.SetNPCLocation(this.GlobalPosition);
 		
         MoveAndSlide(moveTo);
-		this.Rotation = ai.GetRotation();
+        var rot = ai.GetRotation();
 		
+        animatedSprite.Rotation = rot;
+		
+		
+
+
+
     }
     private bool IsStillShoot(float delta)
     {
@@ -95,13 +118,17 @@ public class BasicTrooper : KinematicBody2D
 
     public override void _Input(InputEvent @event)
 	{
+		
 		base._Input(@event);
-		if (@event is InputEventMouseButton eventMouseButton)
-		{ 
-			if (Input.IsMouseButtonPressed(1))
+		if (selecter.Selected())
+		{
+			if (@event is InputEventMouseButton eventMouseButton)
 			{
-				var location = SharedMapLogic.trueMousePosition;
-				ai.TargetLocation(location);
+				if (Input.IsMouseButtonPressed(1))
+				{
+					var location = SharedMapLogic.trueMousePosition;
+					ai.TargetLocation(location);
+				}
 			}
 		}
     }

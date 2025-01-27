@@ -7,6 +7,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic
     public static class OtherElement
     {
         static Random rnd = new Random();
+        public static int pointAvialable;
         public static void attackTarget(string npcName, int damage, int accuracy)
         {
             if (rnd.Next(100) < accuracy)

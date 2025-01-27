@@ -26,7 +26,7 @@ public class Slithem : KinematicBody2D
         ai = GetNode<GroundMobileLogic>("AI");
         npcStats = new NPCStats();
         animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
-        ai.ImportNpc(this.Name, true, 0.2f, GetRid());
+        this.Name = ai.ImportNpc(this.Name, true, 0.2f, GetRid());
     }
     public override void _Process(float delta)
     {
@@ -90,10 +90,6 @@ public class Slithem : KinematicBody2D
             animationFrame = 0;
         }
         return false;
-    }
-    private void Bite()
-    {
-
     }
     private void GetTargetLocation() 
     {

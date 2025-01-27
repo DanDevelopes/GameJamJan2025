@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="I Tower"
-run/main_scene="res://Main Menu/MainMenu.tscn"
+run/main_scene="res://Main Menu/Main Menu/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1200
 
 [gui]
 

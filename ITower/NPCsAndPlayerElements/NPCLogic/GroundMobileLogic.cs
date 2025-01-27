@@ -27,7 +27,8 @@ public class GroundMobileLogic : Node2D
     private Vector2 npcLocation;
     private List<RayCast2D> visionCasts;
     string targetNPC;
-    private bool isDebug;
+    string npcType;
+    private bool isDebug = false;
     float fastestVelocity;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -36,12 +37,14 @@ public class GroundMobileLogic : Node2D
         
         navAgent = GetNode<NavigationAgent2D>("NavAgent");
     }
-    public void ImportNpc(string npcName, bool isMobile, float visionWidth, RID rID)
+    public string ImportNpc(string npcName, bool isMobile, float visionWidth, RID rID)
     {
-        OtherElement.npcNames.Add(npcName);
+        npcType = Regex.Replace(npcName, @"[\d-]", string.Empty);
+        this.npcName = npcName + this.GetInstanceId().ToString();
+        OtherElement.npcNames.Add(this.npcName);
+        
         stats = new NPCStats();
-        this.npcName = npcName;
-        var npcType = Regex.Replace(npcName, @"[\d-]", string.Empty);
+        
         var multipliers = NPCWieghting.npcMultipliers[npcType];
         stats.health = (int) Math.Round(stats.health * multipliers.health);
         stats.maxHealth = (int) Math.Round(stats.maxHealth * multipliers.maxHealth);
@@ -54,10 +57,13 @@ public class GroundMobileLogic : Node2D
         stats.moral = (int)Math.Round(stats.moral * multipliers.moral);
         stats.intelegent = (int)Math.Round(stats.intelegent * multipliers.intelegent);
         stats.isPlayer = multipliers.isPlayer;
-        SharedStats.addStats(npcName, stats);
+        SharedStats.addStats(this.npcName, stats);
+        
         this.isMobile = isMobile;
         visionWidthInRadions = ((double)stats.feildOfView / 100) * tau;
         VisionSetup(rID);
+        SetNPCLocation(this.GlobalPosition);
+        return this.npcName;
     }
     private void ForcePath() 
     {
@@ -145,7 +151,6 @@ public class GroundMobileLogic : Node2D
                 var collider = cast.GetCollider();
                 if (collider is Node2D entity )
                 {
-                    GD.Print($"{stats.isPlayer} == {SharedStats.getStats(entity.Name).isPlayer}");
                     if(entity.Name == npcName || stats.isPlayer == SharedStats.getStats(entity.Name).isPlayer)
                     {
                         return false;

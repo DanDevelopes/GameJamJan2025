@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Main Menu/LevelUI/Selecter.cs" type="Script" id=1]
+[ext_resource path="res://Main Menu/LevelUI/Animation/Selecter.tres" type="SpriteFrames" id=2]
+
+[node name="Selecter" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 2 )
+
+[node name="TopRight" type="Position2D" parent="."]
+position = Vector2( -14, -15 )
+
+[node name="BottomLeft" type="Position2D" parent="."]
+position = Vector2( 14, 14 )
