@@ -66,7 +66,7 @@ public class BasicTrooper : KinematicBody2D
 		
         MoveAndSlide(moveTo);
         var rot = ai.GetRotation();
-		
+		ai.Rotation = rot;
         animatedSprite.Rotation = rot;
 		
 		

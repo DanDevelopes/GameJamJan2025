@@ -27,7 +27,7 @@ public class MainTower : KinematicBody2D
     {
         OtherElement.pointAvialable = resourceCounter;
         if(resourcePerciseCounter < 32)
-        resourcePerciseCounter += delta / 2;
+        resourcePerciseCounter += delta;
         
         base._Process(delta);
         resourceCounter = (int)Math.Round(resourcePerciseCounter);

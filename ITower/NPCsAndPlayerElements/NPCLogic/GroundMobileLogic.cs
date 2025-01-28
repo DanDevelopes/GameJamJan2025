@@ -93,36 +93,32 @@ public class GroundMobileLogic : Node2D
             };
             this.AddChild(ray);
             visionCasts.Add(ray);
-            if (isDebug)
+            
+            debugVectors.Clear();
+            debugVectors.Add(
+                new Vector2()
+                {
+                    x = this.Position.x,
+                    y = this.Position.y
+                }
+                );
+            debugVectors.Add(
+                ray.CastTo
+                );
+            if (npcType != "Slithem")
             {
-                debugVectors.Clear();
-                debugVectors.Add(
-                    new Vector2()
-                    {
-                        x = this.Position.x,
-                        y = this.Position.y
-                    }
-                    );
-                debugVectors.Add(
-                    ray.CastTo
-                    );
-
                 Line2D line = new Line2D();
                 line.Position = ray.Position;
                 line.Points = debugVectors.ToArray();
-                line.Width = 1;
+                line.Width = 6;
+                if (stats.isPlayer)
+                    line.DefaultColor = new Color(0.6f, 1f, 0.6f, 0.05f);
+                else
+                    line.DefaultColor = new Color(1f, 0.6f, 0.6f, 0.05f);
                 this.AddChild(line);
                 visionLine.Add(line);
             }
-        }
-        int i = 1;
-        
-        foreach (var cast in visionCasts)
-        {
             
-            
-
-            i++;
         }
         
     }

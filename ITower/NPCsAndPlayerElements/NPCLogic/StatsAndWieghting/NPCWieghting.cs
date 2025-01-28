@@ -74,7 +74,7 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
             multipliers = new Multipliers();
             multipliers.health = 0.60f;
             multipliers.maxHealth = 0.60f;
-            multipliers.speed = 0.25f;
+            multipliers.speed = 0.20f;
             multipliers.damage = 0.20f;
             multipliers.accuracy = 0.60f;
             multipliers.feildOfView = 0.30f;
