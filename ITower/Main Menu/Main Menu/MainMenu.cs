@@ -44,7 +44,7 @@ public class MainMenu : Control
 	private void LevelOneStart()
 	{
 		
-		GetTree().ChangeScene("res://Levels/Level1-Tutorial.tscn");
+		GetTree().ChangeScene("res://Levels/Tutorial.tscn");
 	}
 	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)

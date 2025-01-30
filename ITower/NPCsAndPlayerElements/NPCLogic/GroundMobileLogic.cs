@@ -30,6 +30,8 @@ public class GroundMobileLogic : Node2D
     string npcType;
     private bool isDebug = false;
     float fastestVelocity;
+    private bool isLocationReached;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -41,7 +43,7 @@ public class GroundMobileLogic : Node2D
     {
         npcType = Regex.Replace(npcName, @"[\d-]", string.Empty);
         this.npcName = npcName + this.GetInstanceId().ToString();
-        OtherElement.npcNames.Add(this.npcName);
+        LevelInfo.npcNames.Add(this.npcName);
         
         stats = new NPCStats();
         
@@ -168,7 +170,7 @@ public class GroundMobileLogic : Node2D
         if(IsTargetInsight() && stats.isPlayer != SharedStats.getStats(targetNPC).isPlayer)
         {
             
-            OtherElement.attackTarget(targetNPC, stats.damage, stats.accuracy);
+            LevelInfo.attackTarget(targetNPC, stats.damage, stats.accuracy);
             return true;
         }
         return false;
@@ -195,7 +197,7 @@ public class GroundMobileLogic : Node2D
                 
             var velocity = direction * stats.speed * 2;
             rotation = velocity.Angle();
-            if (getLocation.DistanceTo(npcLocation) < 0.01f)
+            if (getLocation.DistanceTo(npcLocation) < 2f)
             {
                 ForcePath();
             }
@@ -212,6 +214,11 @@ public class GroundMobileLogic : Node2D
     public void SetNPCLocation(Vector2 location) 
     {
         npcLocation = location;
-        OtherElement.AddPosition(npcName, location);
+        LevelInfo.AddPosition(npcName, location);
+    }
+
+    internal bool ReachedLocation()
+    {
+        return npcLocation.DistanceTo(navAgent.GetFinalLocation()) > 2f;
     }
 }

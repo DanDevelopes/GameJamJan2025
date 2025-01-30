@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://NPCsAndPlayerElements/BasicTrooper/BasicTrooper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Level Assets/LevelLogic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://NPCsAndPlayerElements/MainTower/MainTower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PlayerScreenAndUI/PlayerUIController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://NPCsAndPlayerElements/EyeBorg/EyeBorg.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Level Assets/GrassLand.tres" type="TileSet" id=6]
+[ext_resource path="res://NPCsAndPlayerElements/MainTower/MainTowerRoofOnly.png" type="Texture" id=7]
+[ext_resource path="res://Levels/Tutorial.cs" type="Script" id=8]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 32, 32 )
+bake_navigation = true
+format = 1
+tile_data = PoolIntArray( -720885, 0, 0, -720884, 1, 0, -720883, 1, 0, -720882, 1, 0, -655349, 6, 0, -655348, 8, 0, -655347, 8, 0, -655346, 4, 0, -589813, 37, 0, -589812, 37, 0, -589811, 37, 0, -589810, 37, 0, -524277, 0, 0, -524276, 36, 0, -524275, 35, 0, -524274, 2, 0, -458741, 6, 0, -458740, 10, 0, -458739, 10, 0, -458738, 4, 0, -393205, 0, 0, -393204, 14, 0, -393203, 14, 0, -393202, 2, 0, -327669, 6, 0, -327668, 5, 0, -327667, 5, 0, -327666, 4, 0, -196611, 0, 0, -196610, 1, 0, -196609, 1, 0, -262144, 1, 0, -262143, 1, 0, -262142, 1, 0, -262141, 1, 0, -262140, 2, 0, -131075, 7, 0, -131074, 8, 0, -131073, 8, 0, -196608, 8, 0, -196607, 8, 0, -196606, 8, 0, -196605, 8, 0, -196604, 16, 0, -65539, 7, 0, -65538, 8, 0, -65537, 8, 0, -131072, 8, 0, -131071, 8, 0, -131070, 8, 0, -131069, 8, 0, -131068, 15, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -131062, 14, 0, -131061, 14, 0, -131060, 14, 0, -131059, 14, 0, -131058, 37, 0, -131057, 3, 0, -131056, 1, 0, -131055, 2, 0, -3, 7, 0, -2, 8, 0, -1, 8, 0, -65536, 8, 0, -65535, 8, 0, -65534, 8, 0, -65533, 8, 0, -65532, 8, 0, -65531, 8, 0, -65530, 8, 0, -65529, 8, 0, -65528, 8, 0, -65527, 8, 0, -65526, 8, 0, -65525, 8, 0, -65524, 8, 0, -65523, 23, 0, -65522, 37, 0, -65521, 8, 0, -65520, 8, 0, -65519, 16, 0, 65533, 7, 0, 65534, 8, 0, 65535, 8, 0, 0, 8, 0, 1, 8, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 8, 0, 7, 8, 0, 8, 8, 0, 9, 9, 0, 10, 25, 0, 11, 25, 0, 12, 25, 0, 13, 32, 0, 14, 37, 0, 15, 10, 0, 16, 10, 0, 17, 4, 0, 131069, 7, 0, 131070, 8, 0, 131071, 8, 0, 65536, 8, 0, 65537, 8, 0, 65538, 8, 0, 65539, 8, 0, 65540, 9, 0, 65541, 5, 0, 65542, 5, 0, 65543, 5, 0, 65544, 5, 0, 65545, 4, 0, 65546, 37, 0, 65547, 37, 0, 65548, 37, 0, 65549, 37, 0, 65550, 37, 0, 196605, 7, 0, 196606, 8, 0, 196607, 8, 0, 131072, 8, 0, 131073, 8, 0, 131074, 8, 0, 131075, 8, 0, 131076, 16, 0, 131082, 12, 0, 131083, 8, 0, 131084, 8, 0, 131085, 3, 0, 262141, 6, 0, 262142, 10, 0, 262143, 10, 0, 196608, 10, 0, 196609, 10, 0, 196610, 10, 0, 196611, 10, 0, 196612, 4, 0, 196618, 12, 0, 196619, 8, 0, 196620, 8, 0, 196621, 3, 0, 262154, 12, 0, 262155, 8, 0, 262156, 8, 0, 262157, 16, 0, 327690, 12, 0, 327691, 8, 0, 327692, 8, 0, 327693, 16, 0, 393226, 12, 0, 393227, 8, 0, 393228, 8, 0, 393229, 16, 0, 458762, 6, 0, 458763, 18, 0, 458764, 18, 0, 458765, 4, 0 )
+
+[node name="BasicTrooper" parent="TileMap" instance=ExtResource( 1 )]
+position = Vector2( 417, -173 )
+
+[node name="MainTower" parent="TileMap" instance=ExtResource( 3 )]
+position = Vector2( 32, 32 )
+
+[node name="EyeBorg" parent="TileMap" instance=ExtResource( 5 )]
+position = Vector2( 430, -21 )
+
+[node name="EyeBorg2" parent="TileMap" instance=ExtResource( 5 )]
+position = Vector2( 417, -220 )
+
+[node name="EyeBorg3" parent="TileMap" instance=ExtResource( 5 )]
+position = Vector2( 425, 11 )
+rotation = -3.45575
+
+[node name="PressTAndClick" type="RichTextLabel" parent="."]
+margin_left = -87.0
+margin_top = -81.0
+margin_right = 40.0
+margin_bottom = -15.0
+text = "Press T to request troop and click troop to select and order"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = -219.0
+margin_top = -101.0
+margin_right = -93.0
+margin_bottom = 55.0
+text = "This is your tower you need to protect it from incoming enemies once health reach 0 the mission has failed 
+which is displayed in the bottom HUD (Heads up display)"
+
+[node name="Movement" type="RichTextLabel" parent="."]
+margin_left = 169.0
+margin_top = -240.0
+margin_right = 295.0
+margin_bottom = -70.0
+text = "once troop/s has been select you can direct all by clicking (Left mouse button) LMB and dismiss by clicking RMB(Right mouse button)
+LMB: Select
+RMB: Dismiss All"
+
+[node name="PressWASD" type="RichTextLabel" parent="."]
+margin_left = 167.0
+margin_top = 69.0
+margin_right = 293.0
+margin_bottom = 254.0
+text = "you can move around the map using WASD 
+W : Up
+A: Left
+S: Down
+D: Right 
+
+You can use R and F for zoom R zoom out F Zoom in"
+
+[node name="AttackTarget" type="RichTextLabel" parent="."]
+margin_left = 461.0
+margin_top = -65.0
+margin_right = 587.0
+margin_bottom = 28.0
+rect_pivot_offset = Vector2( 99, -61 )
+text = "Troops will shoot automatically if enemy is in line of sight. Direct
+ the troop here
+<----"
+
+[node name="PressEOrX" type="RichTextLabel" parent="."]
+margin_left = 482.0
+margin_top = -319.0
+margin_right = 608.0
+margin_bottom = -41.0
+rect_pivot_offset = Vector2( 99, -61 )
+text = "you can press X to drop a bomb or press E to drop a turret at the red reticle.
+These use request points that will need to charge.
+
+E: Turret Drop
+X: Bomb Drop 
+
+With Bombs Causion is Advised as this can destroy friendly and enemy troops"
+
+[node name="MainTowerRoofOnly" type="Sprite" parent="."]
+position = Vector2( 32, 32 )
+texture = ExtResource( 7 )
+
+[node name="LevelLogic" parent="." instance=ExtResource( 2 )]
+
+[node name="PlayerUIController" parent="." instance=ExtResource( 4 )]
+position = Vector2( -395, -238 )

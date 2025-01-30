@@ -20,19 +20,21 @@ public class MainTower : KinematicBody2D
     {
         ai = GetNode<GroundMobileLogic>("AI");
         this.Name = ai.ImportNpc(this.Name, false, 0f, this.GetRid());
+        resourcePerciseCounter = 64f;
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        OtherElement.pointAvialable = resourceCounter;
+        LevelInfo.pointAvialable = resourceCounter;
         if(resourcePerciseCounter < 32)
-        resourcePerciseCounter += delta;
+            resourcePerciseCounter += delta;
         
         base._Process(delta);
         resourceCounter = (int)Math.Round(resourcePerciseCounter);
         if (SharedStats.getStats(this.Name).health < 1) 
         {
+            
             this.QueueFree();
             //Mission Failed State here
         }

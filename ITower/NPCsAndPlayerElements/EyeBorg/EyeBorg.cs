@@ -9,12 +9,14 @@ public class EyeBorg : KinematicBody2D
     bool init = false;
     AnimatedSprite animatedSprite;
     NPCStats npcStats;
+    LevelLogic levelLogic;
     public EyeBorg()
     {
 
     }
     public override void _Ready()
     {
+        levelLogic = new LevelLogic();
         ai = GetNode<GroundMobileLogic>("GroundMobileAI");
         this.Name = ai.ImportNpc(this.Name, true, 0.2f, GetRid());
         animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
@@ -24,12 +26,14 @@ public class EyeBorg : KinematicBody2D
     public override void _Process(float delta)
     {
         base._Process(delta);
-        GetTargetLocation();
         npcStats = SharedStats.getStats(this.Name);
         if (npcStats.health < 1)
         {
             this.QueueFree();
         }
+        
+        GetTargetLocation();
+        
         if (isShooting && shootMode)
         {
             var result = IsStillShoot(delta);
@@ -49,10 +53,12 @@ public class EyeBorg : KinematicBody2D
         base._Process(delta);
         var moveTo = ai.GetNewLocation(this.GlobalPosition);
         ai.SetNPCLocation(this.GlobalPosition);
-
-        MoveAndSlide(moveTo);
-        this.Rotation = ai.GetRotation();
-
+        if (levelLogic.GetLevel() > 0)
+        {
+            MoveAndSlide(moveTo);
+            this.Rotation = ai.GetRotation();
+        }
+        
     }
     private bool IsStillShoot(float delta)
     {
@@ -81,15 +87,19 @@ public class EyeBorg : KinematicBody2D
     }
     private string GetTarget()
     {
-        foreach (var npcName in OtherElement.npcNames)
+        foreach (var npcName in LevelInfo.npcNames)
         {
             if (SharedStats.getStats(npcName).health > 0 && npcName.Contains("Slithem"))
             {
                 return npcName;
             }
+            else if (SharedStats.getStats(npcName).health > 0 && SharedStats.getStats(npcName).isPlayer == true)
+            {
+                return npcName;
+            }
 
         }
-        foreach (var npcName in OtherElement.npcNames)
+        foreach (var npcName in LevelInfo.npcNames)
         {
             if (SharedStats.getStats(npcName).health > 0 && SharedStats.getStats(npcName).isPlayer == true)
             {
@@ -111,7 +121,7 @@ public class EyeBorg : KinematicBody2D
         {
             GetTarget();
         }
-        var myPositions = OtherElement.GetPosition(targetName);
+        var myPositions = LevelInfo.GetPosition(targetName);
         ai.TargetLocation(myPositions[targetName]);
     }
 

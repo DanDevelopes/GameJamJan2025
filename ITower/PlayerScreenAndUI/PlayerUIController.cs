@@ -21,6 +21,7 @@ public class PlayerUIController : Node2D
         hudControlText = GetNode<RichTextLabel>("Hud/HudControlPanel/HudControlText");
         hudInfoText = GetNode<RichTextLabel>("Hud/HudInfoPanel/HudInfoText");
         controlDisplay = WriteControlSettings();
+        povCam.ResetSmoothing();
     }
     private string WriteControlSettings() 
     {
@@ -44,10 +45,10 @@ public class PlayerUIController : Node2D
     }
     public string GetInformation() 
     {
-        var towerName = OtherElement.npcNames.Where(x => x.Contains("MainTower")).FirstOrDefault(); // question can you or can you not use linq?
+        var towerName = LevelInfo.npcNames.Where(x => x.Contains("MainTower")).FirstOrDefault(); // question can you or can you not use linq?
         var towerHealth = SharedStats.getStats(towerName).health;
         string message = $"Tower Health: {towerHealth}";
-        message += $"\nRequest Points: {OtherElement.pointAvialable}";
+        message += $"\nRequest Points: {LevelInfo.pointAvialable}";
         message += $"\nTroop Cost: 6rp";
         message += $"\nTurret Cost: 12rp";
         message += $"\nBomb Cost: 16";

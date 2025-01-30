@@ -27,7 +27,7 @@ public class SmallTurret : KinematicBody2D
         this.Name = groundMobileLogic.ImportNpc(Name, false, 0.44f, GetRid());
         turret = GetNode<AnimatedSprite>("GroundMobileAI/AnimatedBody");
         turret.Frame = 0;
-        OtherElement.AddPosition(this.Name,this.Position);
+        LevelInfo.AddPosition(this.Name,this.Position);
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
