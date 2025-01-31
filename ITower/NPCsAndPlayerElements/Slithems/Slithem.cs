@@ -103,13 +103,13 @@ public class Slithem : KinematicBody2D
         {
             GetTarget();
         }
-        var myPositions = OtherElement.GetPosition(targetName);
+        var myPositions = LevelInfo.GetPosition(targetName);
         ai.TargetLocation(myPositions[targetName]);
     }
 
     private string GetTarget() 
     {
-        foreach (var npcName in OtherElement.npcNames)
+        foreach (var npcName in LevelInfo.npcNames)
         {
             // where 
             if (SharedStats.getStats(npcName).health > 0 && SharedStats.getStats(npcName).isPlayer == true)

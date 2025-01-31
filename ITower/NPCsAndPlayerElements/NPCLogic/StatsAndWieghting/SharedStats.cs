@@ -22,5 +22,10 @@ namespace ITower.NPCsAndPlayerElements.NPCLogic.StatsAndWieghting
         {
             return allNPCStats[npcName];
         }
+
+        internal static void ClearStats()
+        {
+            allNPCStats.Clear();    
+        }
     }
 }

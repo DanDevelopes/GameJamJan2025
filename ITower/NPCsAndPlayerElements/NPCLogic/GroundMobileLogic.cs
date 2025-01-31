@@ -30,6 +30,8 @@ public class GroundMobileLogic : Node2D
     string npcType;
     private bool isDebug = false;
     float fastestVelocity;
+    private bool isLocationReached;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -41,7 +43,7 @@ public class GroundMobileLogic : Node2D
     {
         npcType = Regex.Replace(npcName, @"[\d-]", string.Empty);
         this.npcName = npcName + this.GetInstanceId().ToString();
-        OtherElement.npcNames.Add(this.npcName);
+        LevelInfo.npcNames.Add(this.npcName);
         
         stats = new NPCStats();
         
@@ -93,36 +95,32 @@ public class GroundMobileLogic : Node2D
             };
             this.AddChild(ray);
             visionCasts.Add(ray);
-            if (isDebug)
+            
+            debugVectors.Clear();
+            debugVectors.Add(
+                new Vector2()
+                {
+                    x = this.Position.x,
+                    y = this.Position.y
+                }
+                );
+            debugVectors.Add(
+                ray.CastTo
+                );
+            if (npcType != "Slithem")
             {
-                debugVectors.Clear();
-                debugVectors.Add(
-                    new Vector2()
-                    {
-                        x = this.Position.x,
-                        y = this.Position.y
-                    }
-                    );
-                debugVectors.Add(
-                    ray.CastTo
-                    );
-
                 Line2D line = new Line2D();
                 line.Position = ray.Position;
                 line.Points = debugVectors.ToArray();
-                line.Width = 1;
+                line.Width = 6;
+                if (stats.isPlayer)
+                    line.DefaultColor = new Color(0.6f, 1f, 0.6f, 0.05f);
+                else
+                    line.DefaultColor = new Color(1f, 0.6f, 0.6f, 0.05f);
                 this.AddChild(line);
                 visionLine.Add(line);
             }
-        }
-        int i = 1;
-        
-        foreach (var cast in visionCasts)
-        {
             
-            
-
-            i++;
         }
         
     }
@@ -172,7 +170,7 @@ public class GroundMobileLogic : Node2D
         if(IsTargetInsight() && stats.isPlayer != SharedStats.getStats(targetNPC).isPlayer)
         {
             
-            OtherElement.attackTarget(targetNPC, stats.damage, stats.accuracy);
+            LevelInfo.attackTarget(targetNPC, stats.damage, stats.accuracy);
             return true;
         }
         return false;
@@ -199,7 +197,7 @@ public class GroundMobileLogic : Node2D
                 
             var velocity = direction * stats.speed * 2;
             rotation = velocity.Angle();
-            if (getLocation.DistanceTo(npcLocation) < 0.01f)
+            if (getLocation.DistanceTo(npcLocation) < 2f)
             {
                 ForcePath();
             }
@@ -216,6 +214,11 @@ public class GroundMobileLogic : Node2D
     public void SetNPCLocation(Vector2 location) 
     {
         npcLocation = location;
-        OtherElement.AddPosition(npcName, location);
+        LevelInfo.AddPosition(npcName, location);
+    }
+
+    internal bool ReachedLocation()
+    {
+        return npcLocation.DistanceTo(navAgent.GetFinalLocation()) > 2f;
     }
 }

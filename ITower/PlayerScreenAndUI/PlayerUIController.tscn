@@ -17,10 +17,10 @@ zoom = Vector2( 0.6, 1 )
 
 [node name="HudControlPanel" type="PanelContainer" parent="Hud"]
 modulate = Color( 1, 1, 1, 0.329412 )
-margin_left = 210.0
-margin_top = 324.0
-margin_right = 572.0
-margin_bottom = 400.0
+margin_left = 211.0
+margin_top = 518.0
+margin_right = 573.0
+margin_bottom = 594.0
 
 [node name="HudControlText" type="RichTextLabel" parent="Hud/HudControlPanel"]
 margin_left = 7.0
@@ -33,15 +33,15 @@ text = "Base Health :"
 [node name="HudInfoPanel" type="PanelContainer" parent="Hud"]
 modulate = Color( 1, 1, 1, 0.486275 )
 margin_left = 5.0
-margin_top = 196.0
+margin_top = 383.0
 margin_right = 208.0
-margin_bottom = 408.0
+margin_bottom = 596.0
 
 [node name="HudInfoText" type="RichTextLabel" parent="Hud/HudInfoPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 196.0
-margin_bottom = 205.0
+margin_bottom = 206.0
 custom_colors/default_color = Color( 0.898039, 0.890196, 0, 1 )
 text = "Scroll Up"
 scroll_active = false

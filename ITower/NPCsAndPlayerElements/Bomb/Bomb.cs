@@ -35,7 +35,7 @@ public class Bomb : Area2D
     }
     private void _FindVictim(Node2D body) 
     {
-        if(OtherElement.npcNames.Contains(body.Name) && timer >= 0)
+        if(LevelInfo.npcNames.Contains(body.Name) && timer >= 0)
             SharedStats.getStats(body.Name).health = 0;
     }
 }
